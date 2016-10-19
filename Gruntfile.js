@@ -1,0 +1,231 @@
+'use strict';
+var LIVERELOAD_PORT = 35729;
+var babel = require('rollup-plugin-babel')
+var commonjs = require('rollup-plugin-commonjs')
+var nodeResolve = require('rollup-plugin-node-resolve')
+
+module.exports = function (grunt) {
+  // load all grunt tasks
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
+
+  grunt.initConfig({
+    watch: {
+      grunt: {
+        files: [ 'Gruntfile.js' ]
+      },
+      livereload: {
+        options: {
+          livereload: LIVERELOAD_PORT
+        },
+        files: [
+          'build/{,*/}*.html',
+          '{,build/**/}*.css',
+          '{,test/**/,build/**/}*.js'
+        ]
+      },
+      js: {
+        files: [
+          'src/{,*/}*.js'
+        ],
+        tasks: [
+          'rollup',
+          'standard'
+        ]
+      },
+      stylus: {
+        files: [
+          'src/{,*/}*.css'
+        ],
+        tasks: [ 'stylus:server' ]
+      },
+      assemble: {
+        files: [
+          'src/{,*/}*.{hbs,html,md}'
+        ],
+        tasks: [ 'assemble' ]
+      }
+    },
+    connect: {
+      options: {
+        port: 9000,
+        hostname: '0.0.0.0'
+      },
+      livereload: {
+        options: {
+          livereload: true,
+          base: [
+            './build',
+            './'
+          ]
+        }
+      },
+      dist: {
+        options: {
+          base: './build'
+        }
+      },
+      test: {
+        options: {
+          base: './'
+        }
+      }
+    },
+    standard: {
+      options: {
+        parser: 'babel-eslint'
+      },
+      server: {
+        src: [
+          '{src,test}/{,*/}*.js'
+        ]
+      }
+    },
+    stylus: {
+      options: {
+        'include css': true
+      },
+      server: {
+        files: {
+          'build/siloz.css': 'src/app.css'
+        }
+      },
+      dist: {
+        options: {
+          compress: true,
+        },
+        files: {
+          'build/siloz.css': 'src/app.css'
+        }
+      }
+    },
+    rollup: {
+      options: {
+        sourceMap: true,
+        plugins: [
+          babel({
+            exclude: 'node_modules/**'
+          }),
+          nodeResolve({
+            jsnext: true,
+            main: true
+          }),
+          commonjs({
+            include: 'node_modules/**'
+          })
+        ],
+        format: 'iife'
+      },
+      files: {
+        src: 'src/app.js',
+        dest: 'build/siloz.js'
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          'build/siloz.js': 'build/siloz.js'
+        }
+      }
+    },
+    'saucelabs-mocha': {
+      all: {
+        options: {
+          urls: [
+            'http://127.0.0.1:9000/test'
+          ],
+          detailedError: true,
+          browsers: [
+            {
+              browserName: 'chrome',
+              platform: 'Linux'
+            }, {
+              browserName: 'firefox',
+              platform: 'Linux'
+            }, {
+              browserName: 'android',
+              platform: 'Linux',
+              version: '5.1'
+            }, {
+              browserName: 'internet explorer',
+              platform: 'Windows 7',
+              version: '9.0'
+            }, {
+              browserName: 'internet explorer',
+              platform: 'Windows 8',
+              version: '10.0'
+            }, {
+              browserName: 'internet explorer',
+              platform: 'Windows 10',
+              version: '11.0'
+            }, {
+              browserName: 'safari',
+              platform: 'OS X 10.11',
+              version: '9.0'
+            }
+          ]
+        }
+      }
+    },
+    assemble: {
+      options: {
+        layoutdir: 'src/layouts',
+        partials: 'src/partials/**'
+      },
+      site: {
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: '{,*/}*.{hbs,md}',
+          dest: 'build'
+        }]
+      }
+    },
+    buildcontrol: {
+      options: {
+        dir: 'build',
+        commit: true,
+        push: true
+      },
+      site: {
+        options: {
+          remote: 'git@github.com:ghinda/siloz.io.git',
+          branch: 'gh-pages'
+        }
+      }
+    }
+  })
+
+  grunt.registerTask('server', function (target) {
+    if (target === 'dist') {
+      return grunt.task.run([
+        'default',
+        'connect:dist:keepalive'
+      ])
+    }
+
+    grunt.task.run([
+      'default',
+      'connect:livereload',
+      'watch'
+    ])
+  })
+
+  grunt.registerTask('test', [
+    'default',
+    'connect:test',
+    'saucelabs-mocha'
+  ])
+
+  grunt.registerTask('default', [
+    'standard',
+    'rollup',
+    'uglify',
+    'stylus:dist',
+    'assemble'
+  ])
+
+  grunt.registerTask('deploy', [
+    'default',
+    'buildcontrol'
+  ])
+}

@@ -1,0 +1,30 @@
+/* siloz.io
+ */
+
+@import '../node_modules/jotted/jotted.css'
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.app {
+  height: 100%;
+}
+
+.header {
+  height: 2em;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.editor {
+  height: calc(100% - 2em);
+}
+
+.jotted-theme-siloz {
+  height: 100%;
+}

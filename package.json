@@ -1,0 +1,37 @@
+{
+  "name": "siloz.io",
+  "private": true,
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "clean": "rm -rf build/",
+    "dev": "npm run clean && grunt server",
+    "build": "npm run clean && grunt",
+    "deploy": "npm run clean && cp CNAME build/CNAME && grunt deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "AGPL",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.0.0",
+    "connect-livereload": "^0.6.0",
+    "cssnano": "^3.7.7",
+    "grunt": "^1.0.1",
+    "grunt-assemble": "^0.5.0",
+    "grunt-build-control": "^0.7.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-stylus": "^1.2.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-rollup": "^0.8.0",
+    "grunt-saucelabs": "^9.0.0",
+    "grunt-standard": "^2.0.0",
+    "jotted": "^1.4.5",
+    "lz-string": "^1.4.4",
+    "matchdep": "^1.0.0",
+    "rollup-plugin-babel": "^2.3.9",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-node-resolve": "^2.0.0"
+  }
+}

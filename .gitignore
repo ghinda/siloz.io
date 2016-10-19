@@ -1,0 +1,4 @@
+/node_modules/
+build/
+sauce_connect.log
+*.kate-swp
