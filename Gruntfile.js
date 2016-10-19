@@ -188,7 +188,7 @@ module.exports = function (grunt) {
       },
       site: {
         options: {
-          remote: 'git@github.com:ghinda/siloz.io.git',
+          remote: 'git@github.com:ghinda/siloz.git',
           branch: 'gh-pages'
         }
       }
