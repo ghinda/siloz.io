@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "clean": "rm -rf build/",
+    "clean": "rm -rf build/**",
     "dev": "npm run clean && grunt server",
     "build": "npm run clean && grunt",
     "deploy": "npm run clean && cp CNAME build/CNAME && grunt deploy",
