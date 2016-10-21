@@ -1,49 +1,38 @@
 /* main
  */
-var Jotted = require('jotted')
-var LZString = require('lz-string')
 
-var store = require('../state/store')
+var durruti = require('durruti')
+var EditorWidget = require('./editor-widget')
 
-var data = store
+var GlobalStore = require('../state/store')
+var store = new GlobalStore()
 
 function Main () {
-  this.mount = function () {
-    // TODO plugin
-    Jotted.plugin('siloz', function (jotted, options) {
-      jotted.on('change', function (params, callback) {
-        data.files.some((file) => {
-          if (file.type === params.type) {
-            file.content = params.content
-            return true
-          }
-        })
+  var $container
+  var data = store.get()
 
-        var compressed = LZString.compressToEncodedURIComponent(JSON.stringify(data))
-        window.history.replaceState(null, null, '#' + compressed)
+  var change = function () {
+    var newData = store.get()
 
-        callback(null, params)
-      })
+    // don't compare the files
+    delete data.files
+    delete newData.files
 
-      // TODO last priority when saved
-    })
-
-    try {
-      if (window.location.hash) {
-        data = JSON.parse(LZString.decompressFromEncodedURIComponent(window.location.hash.substr(1)))
-      }
-    } catch (err) {
-      console.log(err)
+    // if something changed,
+    // except the files.
+    if (JSON.stringify(data) !== JSON.stringify(newData)) {
+      durruti.render(Main, $container)
     }
+  }
 
-    /* eslint-disable no-new */
-    new Jotted(document.querySelector('.editor-instance'), {
-      files: data.files,
-      plugins: [
-        'siloz',
-        'codemirror'
-      ]
-    })
+  this.mount = function ($node) {
+    $container = $node
+
+    store.on('change', change)
+  }
+
+  this.unmount = function () {
+    store.off('change', change)
   }
 
   this.render = function () {
@@ -55,7 +44,7 @@ function Main () {
       </header>
 
       <div class="editor">
-        <div class="editor-instance jotted-theme-bin jotted-theme-siloz"></div>
+        ${durruti.render(new EditorWidget(store.actions))}
       </div>
     </div>`
   }
