@@ -28,7 +28,7 @@ function EditorWidget (actions) {
         {
           name: 'codemirror',
           options: {
-//             theme: 'material'
+            theme: 'material'
           }
         }
       ]
@@ -36,7 +36,7 @@ function EditorWidget (actions) {
   }
 
   this.render = function () {
-    return '<div class="editor-widget jotted-theme-bin jotted-theme-siloz"></div>'
+    return '<div class="editor-widget jotted-theme-siloz"></div>'
   }
 }
 

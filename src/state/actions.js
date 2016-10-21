@@ -1,6 +1,8 @@
 /* store actions
  */
 
+var util = require('../util')
+
 function actions (store) {
   function getFiles () {
     return store.get().files
@@ -11,8 +13,7 @@ function actions (store) {
 
     data.files.some((file, index) => {
       if (file.type === newFile.type) {
-        // TODO extend
-        data.files[index] = newFile
+        data.files[index] = util.extend(newFile, data.files[index])
         return true
       }
     })
