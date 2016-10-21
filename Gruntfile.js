@@ -1,8 +1,5 @@
 'use strict';
 var LIVERELOAD_PORT = 35729;
-var babel = require('rollup-plugin-babel')
-var commonjs = require('rollup-plugin-commonjs')
-var nodeResolve = require('rollup-plugin-node-resolve')
 
 module.exports = function (grunt) {
   // load all grunt tasks
@@ -18,9 +15,8 @@ module.exports = function (grunt) {
           livereload: LIVERELOAD_PORT
         },
         files: [
-          'build/{,*/}*.html',
-          '{,build/**/}*.css',
-          '{,test/**/,build/**/}*.js'
+          'build/{,*/}*.{html,css,js}',
+          'test/**/*.js'
         ]
       },
       js: {
@@ -28,17 +24,17 @@ module.exports = function (grunt) {
           'src/{,*/}*.js'
         ],
         tasks: [
-          'rollup',
+          'browserify',
           'standard'
         ]
       },
-      stylus: {
+      css: {
         files: [
           'src/{,*/}*.css'
         ],
         tasks: [ 'stylus:server' ]
       },
-      assemble: {
+      html: {
         files: [
           'src/{,*/}*.{hbs,html,md}'
         ],
@@ -98,22 +94,9 @@ module.exports = function (grunt) {
         }
       }
     },
-    rollup: {
+    browserify: {
       options: {
-        sourceMap: true,
-        plugins: [
-          babel({
-            exclude: 'node_modules/**'
-          }),
-          nodeResolve({
-            jsnext: true,
-            main: true
-          }),
-          commonjs({
-            include: 'node_modules/**'
-          })
-        ],
-        format: 'iife'
+        transform: [ 'babelify' ]
       },
       files: {
         src: 'src/app.js',
@@ -169,7 +152,11 @@ module.exports = function (grunt) {
     assemble: {
       options: {
         layoutdir: 'src/layouts',
-        partials: 'src/partials/**'
+        partials: 'src/partials/**',
+        helpers: [
+          'handlebars-helpers',
+          './helper-durruti.js'
+        ]
       },
       site: {
         files: [{
@@ -218,7 +205,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'standard',
-    'rollup',
+    'browserify',
     'uglify',
     'stylus:dist',
     'assemble'

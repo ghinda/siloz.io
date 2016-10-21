@@ -1,7 +1,7 @@
 /* store
  */
 
-export default {
+module.exports = {
   files: [{
     type: 'html',
     content: '<h1>hello world</h1>',
