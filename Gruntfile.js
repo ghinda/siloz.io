@@ -108,7 +108,7 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          'build/siloz.js': 'build/siloz.min.js'
+          'build/siloz.min.js': 'build/siloz.js'
         }
       }
     },
