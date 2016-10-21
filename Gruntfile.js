@@ -38,7 +38,7 @@ module.exports = function (grunt) {
         files: [
           'src/{,*/}*.{hbs,html,md}'
         ],
-        tasks: [ 'assemble' ]
+        tasks: [ 'assemble:server' ]
       }
     },
     connect: {
@@ -90,7 +90,7 @@ module.exports = function (grunt) {
           compress: true,
         },
         files: {
-          'build/siloz.css': 'src/app.css'
+          'build/siloz.min.css': 'src/app.css'
         }
       }
     },
@@ -109,7 +109,7 @@ module.exports = function (grunt) {
     uglify: {
       dist: {
         files: {
-          'build/siloz.js': 'build/siloz.js'
+          'build/siloz.js': 'build/siloz.min.js'
         }
       }
     },
@@ -161,7 +161,20 @@ module.exports = function (grunt) {
           './helper-durruti.js'
         ]
       },
-      site: {
+      server: {
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: '{,*/}*.{hbs,md}',
+          dest: 'build'
+        }]
+      },
+      dist: {
+        options: {
+          data: {
+            production: true
+          }
+        },
         files: [{
           expand: true,
           cwd: 'src',
@@ -194,7 +207,10 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'default',
+      'standard',
+      'browserify',
+      'stylus:server',
+      'assemble:server',
       'connect:livereload',
       'watch'
     ])
@@ -211,7 +227,7 @@ module.exports = function (grunt) {
     'browserify',
     'uglify',
     'stylus:dist',
-    'assemble'
+    'assemble:dist'
   ])
 
   grunt.registerTask('deploy', [

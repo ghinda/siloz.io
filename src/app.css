@@ -2,5 +2,6 @@
  */
 
 @import '../node_modules/jotted/jotted.css';
+@import '../node_modules/codemirror/lib/codemirror.css';
 
-@import 'main.css';
+@import './components/main.css';

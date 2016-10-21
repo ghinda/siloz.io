@@ -4,14 +4,23 @@
     <title>
       siloz
     </title>
-    <link rel="stylesheet" href="siloz.css">
+
+    {{#if production}}
+      <link rel="stylesheet" href="siloz.min.css">
+    {{else}}
+      <link rel="stylesheet" href="siloz.css">
+    {{/if}}
   </head>
   <body>
 
     <div class="app">
-      {{ durruti './src/main.js' }}
+      {{ durruti './src/components/main.js' }}
     </div>
 
-    <script src="siloz.js"></script>
+    {{#if production}}
+      <script src="siloz.min.js"></script>
+    {{else}}
+      <script src="siloz.js"></script>
+    {{/if}}
   </body>
 </html>

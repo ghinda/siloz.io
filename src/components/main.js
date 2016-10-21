@@ -3,7 +3,7 @@
 var Jotted = require('jotted')
 var LZString = require('lz-string')
 
-var store = require('./components/store')
+var store = require('../state/store')
 
 var data = store
 
@@ -40,7 +40,8 @@ function Main () {
     new Jotted(document.querySelector('.editor-instance'), {
       files: data.files,
       plugins: [
-        'siloz'
+        'siloz',
+        'codemirror'
       ]
     })
   }
