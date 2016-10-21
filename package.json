@@ -18,7 +18,6 @@
     "babelify": "^7.3.0",
     "codemirror": "^5.20.2",
     "connect-livereload": "^0.6.0",
-    "cssnano": "^3.7.7",
     "durruti": "0.0.15",
     "grunt": "^1.0.1",
     "grunt-assemble": "^0.5.0",
