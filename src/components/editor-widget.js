@@ -16,7 +16,7 @@ Jotted.plugin('siloz', function (jotted, options) {
     console.log(params.content)
 
     callback(null, params)
-  }, 1)
+  }, 2)
 })
 
 function EditorWidget (actions) {
