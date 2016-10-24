@@ -1,17 +1,26 @@
 /* editor bar
  */
 
-
 function EditorBar (actions) {
-  this.mount = function ($container) {
+  function changeHtml (e) {
+    if (this.value === 'markdown') {
+      actions.addPlugin('markdown')
+    }
+  }
 
+//   function setSelectValue () {
+//     // TODO on load set select values based on store
+//   }
+
+  this.mount = function ($container) {
+    $container.querySelector('.editor-bar-select-html').addEventListener('change', changeHtml)
   }
 
   this.render = function () {
     return `
       <div class="editor-bar">
         <div class="editor-bar-pane editor-bar-pane-html">
-          <select class="editor-bar-select">
+          <select class="editor-bar-select editor-bar-select-html">
             <option value="html">
               HTML
             </option>

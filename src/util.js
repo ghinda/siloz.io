@@ -72,9 +72,30 @@ function debounce (func, wait, immediate) {
   }
 }
 
+function loadScript (url, done = () => {}) {
+  var $script = document.createElement('script')
+  $script.src = url
+  document.body.appendChild($script)
+
+  $script.onload = done
+}
+
+function async (arr, done, i = 0) {
+  if (arr.length === i) {
+    return done()
+  }
+
+  arr[i](() => {
+    i++
+    async(arr, done, i)
+  })
+}
+
 module.exports = {
   clone: clone,
   extend: extend,
   closest: closest,
-  debounce: debounce
+  debounce: debounce,
+  loadScript: loadScript,
+  async: async
 }
