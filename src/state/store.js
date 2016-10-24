@@ -6,6 +6,7 @@ var LZString = require('lz-string')
 var actions = require('./actions')
 
 var defaults = {
+  version: 1,
   files: [{
     type: 'html',
     content: '',

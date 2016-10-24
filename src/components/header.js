@@ -7,7 +7,7 @@ function Header (actions) {
       <header class="header">
         <a href="/" class="header-logo">
           <h1>
-            siloz
+            siloz.io
           </h1>
         </a>
       </header>
