@@ -19,14 +19,6 @@ module.exports = function (grunt) {
           'test/**/*.js'
         ]
       },
-      js: {
-        files: [
-          'src/{,*/}*.js'
-        ],
-        tasks: [
-          'browserify'
-        ]
-      },
       css: {
         files: [
           'src/{,*/}*.css'
@@ -100,9 +92,18 @@ module.exports = function (grunt) {
         },
         transform: [ 'babelify' ]
       },
-      files: {
-        src: 'src/app.js',
-        dest: 'build/siloz.js'
+      server: {
+        options: {
+          watch: true
+        },
+        files: {
+          'build/siloz.js': 'src/app.js'
+        }
+      },
+      dist: {
+        files: {
+          'build/siloz.js': 'src/app.js'
+        }
       }
     },
     uglify: {
@@ -207,7 +208,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'standard',
-      'browserify',
+      'browserify:server',
       'stylus:server',
       'assemble:server',
       'connect:livereload',
@@ -223,7 +224,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'standard',
-    'browserify',
+    'browserify:dist',
     'uglify',
     'stylus:dist',
     'assemble:dist'
