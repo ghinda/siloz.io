@@ -1,0 +1,30 @@
+/* editor bar
+ */
+
+.editor-bar {
+  overflow: hidden;
+  height: 2em;
+  table-layout: fixed;
+}
+
+.editor-bar-pane {
+  float: left;
+  width: 25%;
+  height: 100%;
+  border-left: 1px solid #eee8d5;
+}
+
+.editor-bar-pane:first-child {
+  border: 0;
+}
+
+.editor-bar-select {
+  padding: .4em;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  width: auto;
+
+  color: #dc322f;
+  font-family: monospace;
+}

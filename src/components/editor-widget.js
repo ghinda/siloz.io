@@ -1,4 +1,4 @@
-/* editor
+/* editor widget
  */
 
 var Jotted = require('jotted')

@@ -2,7 +2,7 @@
  */
 
 .editor-widget {
-  height: 100%;
+  height: calc(100% - 2em);
 }
 
 /* solarized theme tweaks

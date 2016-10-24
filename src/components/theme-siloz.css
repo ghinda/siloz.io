@@ -2,6 +2,7 @@
  */
 
 .jotted-theme-siloz {
+  overflow: visible;
   border: 0;
 }
 
@@ -12,6 +13,7 @@
 .jotted-theme-siloz .jotted-pane {
   padding: 0 .2em;
   background: transparent;
+  border-color: #eee8d5;
 }
 
 .jotted-theme-siloz .CodeMirror-linenumber,
@@ -21,6 +23,11 @@
 }
 
 .jotted-theme-siloz .jotted-pane-result {
+  position: relative;
+  z-index: 10;
   float: right;
+  height: calc(100% + 2.8em);
+  margin-top: -2.4em;
   background-color: #fff;
+  border-width: 0;
 }

@@ -2,6 +2,8 @@
  */
 
 var durruti = require('durruti')
+var Header = require('./header')
+var EditorBar = require('./editor-bar')
 var EditorWidget = require('./editor-widget')
 
 var GlobalStore = require('../state/store')
@@ -37,13 +39,10 @@ function Main () {
 
   this.render = function () {
     return `<div class="main">
-      <header class="header">
-        <h1>
-          siloz
-        </h1>
-      </header>
+      ${durruti.render(new Header(store.actions))}
 
       <div class="editor">
+        ${durruti.render(new EditorBar(store.actions))}
         ${durruti.render(new EditorWidget(store.actions))}
       </div>
     </div>`

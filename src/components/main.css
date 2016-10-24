@@ -1,6 +1,10 @@
 /* main
  */
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
@@ -16,15 +20,12 @@ body {
   background-color: #fdf6e3;
 }
 
-.header {
-  height: 2em;
-}
-
-.header h1 {
-  margin: 0;
+.main {
+  padding: .4em;
 }
 
 .editor {
+  padding-top: .4em;
   height: calc(100% - 2em);
 }
 
