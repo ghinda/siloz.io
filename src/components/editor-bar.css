@@ -11,10 +11,10 @@
   float: left;
   width: 25%;
   height: 100%;
-  border-left: 1px solid #eee8d5;
+  border-right: 1px solid #eee8d5;
 }
 
-.editor-bar-pane:first-child {
+.editor-bar-pane:last-child {
   border: 0;
 }
 

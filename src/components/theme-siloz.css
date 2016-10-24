@@ -29,5 +29,5 @@
   height: calc(100% + 2.8em);
   margin-top: -2.4em;
   background-color: #fff;
-  border-width: 0;
+  border: 0;
 }
