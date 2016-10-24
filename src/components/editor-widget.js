@@ -13,8 +13,6 @@ Jotted.plugin('siloz', function (jotted, options) {
       content: params.content
     })
 
-    console.log(params.content)
-
     callback(null, params)
   }, 2)
 })

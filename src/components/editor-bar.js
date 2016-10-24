@@ -2,32 +2,58 @@
  */
 
 function EditorBar (actions) {
+  var plugins = actions.getPlugins()
+  var options = {
+    html: [ 'HTML', 'Markdown' ]
+  }
+  var selected = {
+    html: '',
+    css: '',
+    js: ''
+  }
+
   function changeHtml (e) {
     if (this.value === 'markdown') {
       actions.addPlugin('markdown')
+    } else {
+      actions.removePlugin(selected.html)
     }
+
+    selected.html = this.value
   }
 
-//   function setSelectValue () {
-//     // TODO on load set select values based on store
-//   }
+  function createSelect (type, options, selected) {
+    return `
+      <select class="editor-bar-select editor-bar-select-${type}">
+        ${options.map((opt) => {
+          return `
+            <option value="${opt.toLowerCase()}" ${opt.toLowerCase() === selected ? 'selected' : ''}>
+              ${opt}
+            </option>
+          `
+        }).join('')}
+      </select>
+    `
+  }
+
+  function setInitialValues () {
+    // TODO on load set select values based on store
+    if (plugins.indexOf('markdown') !== -1) {
+      selected.html = 'markdown'
+    }
+  }
 
   this.mount = function ($container) {
     $container.querySelector('.editor-bar-select-html').addEventListener('change', changeHtml)
   }
 
   this.render = function () {
+    setInitialValues()
+
     return `
       <div class="editor-bar">
         <div class="editor-bar-pane editor-bar-pane-html">
-          <select class="editor-bar-select editor-bar-select-html">
-            <option value="html">
-              HTML
-            </option>
-            <option value="markdown">
-              Markdown
-            </option>
-          </select>
+          ${createSelect('html', options.html, selected.html)}
         </div>
         <div class="editor-bar-pane editor-bar-pane-html">
           <select class="editor-bar-select">
