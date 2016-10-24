@@ -3,7 +3,6 @@
 
 .jotted-theme-siloz {
   border: 0;
-  display: flex;
 }
 
 .jotted-theme-siloz .jotted-nav {
@@ -11,13 +10,17 @@
 }
 
 .jotted-theme-siloz .jotted-pane {
-  position: relative;
-  visibility: visible;
-  padding-top: 0;
+  padding: 0 .2em;
+  background: transparent;
 }
 
 .jotted-theme-siloz .CodeMirror-linenumber,
 .jotted-theme-siloz .CodeMirror pre {
   font-size: 1.2em;
   line-height: 1.2em;
+}
+
+.jotted-theme-siloz .jotted-pane-result {
+  float: right;
+  background-color: #fff;
 }

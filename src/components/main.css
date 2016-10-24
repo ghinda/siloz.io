@@ -12,6 +12,10 @@ body {
   height: 100%;
 }
 
+.app {
+  background-color: #fdf6e3;
+}
+
 .header {
   height: 2em;
 }

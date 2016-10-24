@@ -4,3 +4,17 @@
 .editor-widget {
   height: 100%;
 }
+
+/* solarized theme tweaks
+ */
+.CodeMirror.cm-s-solarized {
+  box-shadow: none;
+}
+
+.CodeMirror.cm-s-solarized .CodeMirror-gutters {
+  opacity: 0;
+}
+
+.CodeMirror.cm-s-solarized .CodeMirror-linenumber {
+  opacity: .4;
+}

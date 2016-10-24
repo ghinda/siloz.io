@@ -3,6 +3,6 @@
 
 @import '../node_modules/jotted/jotted.css';
 @import '../node_modules/codemirror/lib/codemirror.css';
-@import '../node_modules/codemirror/theme/material.css';
+@import '../node_modules/codemirror/theme/solarized.css';
 
 @import './components/**/*.css';

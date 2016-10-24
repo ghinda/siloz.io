@@ -8,17 +8,17 @@ var actions = require('./actions')
 var defaults = {
   files: [{
     type: 'html',
-    content: '<h1>hello world</h1>',
+    content: '',
     hide: true
   }, {
     type: 'css',
-    content: 'body { background: hotpink }'
+    content: ''
   }, {
     type: 'js',
-    content: 'console.log("hw")'
+    content: ''
   }],
   theme: '',
-  features: []
+  plugins: []
 }
 
 var GlobalStore = function () {
