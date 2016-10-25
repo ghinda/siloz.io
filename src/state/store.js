@@ -9,8 +9,7 @@ var defaults = {
   version: 1,
   files: [{
     type: 'html',
-    content: '',
-    hide: true
+    content: ''
   }, {
     type: 'css',
     content: ''
