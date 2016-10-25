@@ -1,0 +1,25 @@
+/* settings
+ */
+
+.settings {
+  position: relative;
+  z-index: 20;
+  float: right;
+}
+
+.settings-is-open .settings-popup {
+  display: block;
+}
+
+.settings-popup {
+  display: none;
+
+  position: absolute;
+  top: 1.6em;
+  right: 0;
+  padding: 2em;
+  border: 1px solid #657b83;
+  background: #fdf6e3;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+}
+

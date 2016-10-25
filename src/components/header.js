@@ -1,6 +1,9 @@
 /* header
  */
 
+var durruti = require('durruti')
+var Settings = require('./settings')
+
 function Header (actions) {
   this.render = function () {
     return `
@@ -10,6 +13,8 @@ function Header (actions) {
             siloz.io
           </h1>
         </a>
+
+        ${durruti.render(new Settings(actions))}
       </header>
     `
   }
