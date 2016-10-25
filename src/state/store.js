@@ -18,8 +18,17 @@ var defaults = {
     type: 'js',
     content: ''
   }],
+  plugins: [],
   theme: '',
-  plugins: []
+
+  // TODO tab hide/show, width
+  tabs: {
+    html: {
+      hidden: true
+    },
+    css: {},
+    js: {}
+  }
 }
 
 var GlobalStore = function () {

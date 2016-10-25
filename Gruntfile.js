@@ -69,7 +69,10 @@ module.exports = function (grunt) {
     },
     stylus: {
       options: {
-        'include css': true
+        'include css': true,
+        sourcemap: {
+          inline: true
+        }
       },
       server: {
         files: {

@@ -31,3 +31,18 @@
   background-color: #fff;
   border: 0;
 }
+
+/* solarized theme tweaks
+ */
+
+.CodeMirror.cm-s-solarized {
+  box-shadow: none;
+}
+
+.CodeMirror.cm-s-solarized .CodeMirror-gutters {
+  background: #fdf6e3;
+}
+
+.CodeMirror.cm-s-solarized .CodeMirror-linenumber {
+  opacity: .4;
+}
