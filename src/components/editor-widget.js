@@ -17,6 +17,12 @@ Jotted.plugin('siloz', function (jotted, options) {
   }, 2)
 })
 
+var pluginLibs = {
+  markdown: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js',
+  less: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js',
+  stylus: '/libs/stylus.min.js'
+}
+
 function EditorWidget (actions) {
   globalActions = actions
 
@@ -25,11 +31,13 @@ function EditorWidget (actions) {
     var libs = []
 
     // load libs
-    if (plugins.indexOf('markdown') !== -1) {
-      libs.push(function (done) {
-        util.loadScript('https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js', done)
-      })
-    }
+    Object.keys(pluginLibs).forEach((name) => {
+      if (plugins.indexOf(name) !== -1) {
+        libs.push(function (done) {
+          util.loadScript(pluginLibs[name], done)
+        })
+      }
+    })
 
     Array.prototype.push.apply(plugins, [
       'siloz',

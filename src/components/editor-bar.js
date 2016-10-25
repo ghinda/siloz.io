@@ -4,22 +4,46 @@
 function EditorBar (actions) {
   var plugins = actions.getPlugins()
   var options = {
-    html: [ 'HTML', 'Markdown' ]
+    html: [
+      'HTML',
+      'Markdown'
+    ],
+    css: [
+      'CSS',
+      'Less',
+      'Stylus'
+    ],
+    js: [
+      'JavaScript',
+      'ES2015',
+      'CoffeeScript'
+    ]
   }
+
   var selected = {
     html: '',
     css: '',
     js: ''
   }
 
-  function changeHtml (e) {
-    if (this.value === 'markdown') {
-      actions.addPlugin('markdown')
-    } else {
-      actions.removePlugin(selected.html)
-    }
+  var pluginMap = {
+    markdown: 'markdown',
+    less: 'less',
+    stylus: 'stylus'
+  }
 
-    selected.html = this.value
+  function change (type) {
+    return function () {
+      // remove last selected plugin
+      actions.removePlugin(selected[type])
+
+      // update reference
+      selected[type] = this.value
+
+      if (pluginMap[selected[type]]) {
+        actions.addPlugin(selected[type])
+      }
+    }
   }
 
   function createSelect (type, options, selected) {
@@ -38,13 +62,26 @@ function EditorBar (actions) {
 
   function setInitialValues () {
     // TODO on load set select values based on store
+
+    // javascript
     if (plugins.indexOf('markdown') !== -1) {
       selected.html = 'markdown'
+    }
+
+    // css
+    if (plugins.indexOf('less') !== -1) {
+      selected.css = 'less'
+    }
+
+    if (plugins.indexOf('stylus') !== -1) {
+      selected.css = 'stylus'
     }
   }
 
   this.mount = function ($container) {
-    $container.querySelector('.editor-bar-select-html').addEventListener('change', changeHtml)
+    $container.querySelector('.editor-bar-select-html').addEventListener('change', change('html'))
+    $container.querySelector('.editor-bar-select-css').addEventListener('change', change('css'))
+    $container.querySelector('.editor-bar-select-js').addEventListener('change', change('js'))
   }
 
   this.render = function () {
@@ -55,31 +92,11 @@ function EditorBar (actions) {
         <div class="editor-bar-pane editor-bar-pane-html">
           ${createSelect('html', options.html, selected.html)}
         </div>
-        <div class="editor-bar-pane editor-bar-pane-html">
-          <select class="editor-bar-select">
-            <option value="css">
-              CSS
-            </option>
-            <option value="less">
-              Less
-            </option>
-            <option value="stylus">
-              Stylus
-            </option>
-          </select>
+        <div class="editor-bar-pane editor-bar-pane-css">
+          ${createSelect('css', options.css, selected.css)}
         </div>
-        <div class="editor-bar-pane editor-bar-pane-html">
-          <select class="editor-bar-select">
-            <option value="javascript">
-              JavaScript
-            </option>
-            <option value="es2015">
-              ES2015
-            </option>
-            <option value="coffeescript">
-              CoffeeScript
-            </option>
-          </select>
+        <div class="editor-bar-pane editor-bar-pane-js">
+          ${createSelect('js', options.js, selected.js)}
         </div>
       </div>
     `
