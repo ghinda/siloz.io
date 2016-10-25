@@ -18,9 +18,11 @@ Jotted.plugin('siloz', function (jotted, options) {
 })
 
 var pluginLibs = {
-  markdown: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js',
-  less: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js',
-  stylus: '/libs/stylus.min.js'
+  markdown: ['https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js'],
+  less: ['https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js'],
+  stylus: ['/libs/stylus.min.js'],
+  coffeescript: ['https://cdn.rawgit.com/jashkenas/coffeescript/1.11.1/extras/coffee-script.js'],
+  es2015: ['https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.min.js']
 }
 
 function EditorWidget (actions) {
@@ -33,9 +35,11 @@ function EditorWidget (actions) {
     // load libs
     Object.keys(pluginLibs).forEach((name) => {
       if (plugins.indexOf(name) !== -1) {
-        libs.push(function (done) {
-          util.loadScript(pluginLibs[name], done)
-        })
+        Array.prototype.push.apply(libs, pluginLibs[name].map((url) => {
+          return (done) => {
+            util.loadScript(url, done)
+          }
+        }))
       }
     })
 

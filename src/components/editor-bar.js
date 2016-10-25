@@ -4,20 +4,30 @@
 function EditorBar (actions) {
   var plugins = actions.getPlugins()
   var options = {
-    html: [
-      'HTML',
-      'Markdown'
-    ],
-    css: [
-      'CSS',
-      'Less',
-      'Stylus'
-    ],
-    js: [
-      'JavaScript',
-      'ES2015',
-      'CoffeeScript'
-    ]
+    html: [{
+      title: 'HTML'
+    }, {
+      title: 'Markdown',
+      plugin: 'markdown'
+    }],
+    css: [{
+      title: 'CSS'
+    }, {
+      title: 'Less',
+      plugin: 'less'
+    }, {
+      title: 'Stylus',
+      plugin: 'stylus'
+    }],
+    js: [{
+      title: 'JavaScript'
+    }, {
+      title: 'ES2015/Babel',
+      plugin: 'babel'
+    }, {
+      title: 'CoffeeScript',
+      plugin: 'coffeescript'
+    }]
   }
 
   var selected = {
@@ -26,10 +36,16 @@ function EditorBar (actions) {
     js: ''
   }
 
-  var pluginMap = {
-    markdown: 'markdown',
-    less: 'less',
-    stylus: 'stylus'
+  function getPlugin (list, name) {
+    var foundPlugin = null
+    list.some((plugin) => {
+      if (plugin.plugin === name) {
+        foundPlugin = plugin
+        return true
+      }
+    })
+
+    return foundPlugin
   }
 
   function change (type) {
@@ -40,8 +56,9 @@ function EditorBar (actions) {
       // update reference
       selected[type] = this.value
 
-      if (pluginMap[selected[type]]) {
-        actions.addPlugin(selected[type])
+      var plugin = getPlugin(options[type], selected[type])
+      if (plugin) {
+        actions.addPlugin(plugin.plugin)
       }
     }
   }
@@ -51,8 +68,8 @@ function EditorBar (actions) {
       <select class="editor-bar-select editor-bar-select-${type}">
         ${options.map((opt) => {
           return `
-            <option value="${opt.toLowerCase()}" ${opt.toLowerCase() === selected ? 'selected' : ''}>
-              ${opt}
+            <option value="${opt.plugin || ''}" ${opt.plugin === selected ? 'selected' : ''}>
+              ${opt.title}
             </option>
           `
         }).join('')}
@@ -61,21 +78,14 @@ function EditorBar (actions) {
   }
 
   function setInitialValues () {
-    // TODO on load set select values based on store
-
-    // javascript
-    if (plugins.indexOf('markdown') !== -1) {
-      selected.html = 'markdown'
-    }
-
-    // css
-    if (plugins.indexOf('less') !== -1) {
-      selected.css = 'less'
-    }
-
-    if (plugins.indexOf('stylus') !== -1) {
-      selected.css = 'stylus'
-    }
+    // set selected values based on store
+    Object.keys(options).forEach((type) => {
+      options[type].forEach((option) => {
+        if (plugins.indexOf(option.plugin) !== -1) {
+          selected[type] = option.plugin
+        }
+      })
+    })
   }
 
   this.mount = function ($container) {
