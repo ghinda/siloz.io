@@ -24,6 +24,7 @@
   border: 0;
   cursor: pointer;
   width: auto;
+  appearance: none;
 
   color: #dc322f;
   font-family: monospace;

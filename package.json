@@ -31,7 +31,6 @@
     "grunt-standard": "^2.0.0",
     "jotted": "^1.4.5",
     "lz-string": "^1.4.4",
-    "matchdep": "^1.0.0",
-    "nib": "^1.1.2"
+    "matchdep": "^1.0.0"
   }
 }

@@ -70,9 +70,10 @@ module.exports = function (grunt) {
     stylus: {
       options: {
         'include css': true,
-        sourcemap: {
-          inline: true
-        }
+        'resolve url nocheck': true,
+        urlfunc: 'data-uri',
+        sourcemap: {inline: true},
+        import: ['nib'],
       },
       server: {
         files: {
