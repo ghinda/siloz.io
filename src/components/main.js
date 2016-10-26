@@ -3,8 +3,7 @@
 
 var durruti = require('durruti')
 var Header = require('./header')
-var EditorBar = require('./editor-bar')
-var EditorWidget = require('./editor-widget')
+var Editor = require('./editor')
 
 var GlobalStore = require('../state/store')
 var store = new GlobalStore()
@@ -12,6 +11,7 @@ var store = new GlobalStore()
 function Main () {
   var $container
   var data = store.get()
+  var panes = store.actions.getPanes()
 
   var change = function () {
     var newData = store.get()
@@ -38,14 +38,12 @@ function Main () {
   }
 
   this.render = function () {
-    return `<div class="main">
-      ${durruti.render(new Header(store.actions))}
-
-      <div class="editor">
-        ${durruti.render(new EditorBar(store.actions))}
-        ${durruti.render(new EditorWidget(store.actions))}
+    return `
+      <div class="main ${panes.html.hidden ? 'main-is-hidden-html' : ''}">
+        ${durruti.render(new Header(store.actions))}
+        ${durruti.render(new Editor(store.actions))}
       </div>
-    </div>`
+    `
   }
 }
 

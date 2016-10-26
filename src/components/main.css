@@ -23,9 +23,3 @@ body {
 .main {
   padding: .4em;
 }
-
-.editor {
-  padding-top: .4em;
-  height: calc(100% - 2em);
-}
-

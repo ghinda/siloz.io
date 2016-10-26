@@ -53,13 +53,27 @@ function actions (store) {
     return store.set(data)
   }
 
+  function updatePanes (newPanes) {
+    var data = store.get()
+    data.panes = util.extend(newPanes, data.panes)
+
+    return store.set(data)
+  }
+
+  function getPanes () {
+    return store.get().panes
+  }
+
   return {
     getFiles: getFiles,
     updateFile: updateFile,
 
     getPlugins: getPlugins,
     addPlugin: addPlugin,
-    removePlugin: removePlugin
+    removePlugin: removePlugin,
+
+    getPanes: getPanes,
+    updatePanes: updatePanes
   }
 }
 

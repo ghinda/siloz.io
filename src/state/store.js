@@ -21,10 +21,8 @@ var defaults = {
   theme: '',
 
   // TODO tab hide/show, width
-  tabs: {
-    html: {
-      hidden: true
-    },
+  panes: {
+    html: {},
     css: {},
     js: {}
   }

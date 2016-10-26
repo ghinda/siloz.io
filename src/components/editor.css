@@ -1,0 +1,16 @@
+/* editor
+ */
+
+.editor {
+  padding-top: .4em;
+  height: calc(100% - 2em);
+}
+
+.editor-is-hidden-html .editor-bar-pane-html,
+.editor-is-hidden-html .jotted-pane-html,
+.editor-is-hidden-css .editor-bar-pane-css,
+.editor-is-hidden-css .jotted-pane-css,
+.editor-is-hidden-js .editor-bar-pane-js,
+.editor-is-hidden-js .jotted-pane-js {
+  display: none;
+}

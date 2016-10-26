@@ -29,25 +29,27 @@ function clone (obj) {
   return JSON.parse(JSON.stringify(obj))
 }
 
-// one-level object extend
+function extendLevel (obj, defaults = {}) {
+  // copy default keys where undefined
+  Object.keys(defaults).forEach(function (key) {
+    if (typeof obj[key] === 'undefined') {
+      // default
+      obj[key] = clone(defaults[key])
+    } else if (typeof obj[key] === 'object') {
+      extendLevel(obj[key], defaults[key])
+    }
+  })
+
+  return obj
+}
+
+// multi-level object merge
 function extend (obj, defaults) {
   if (obj === null) {
     obj = {}
   }
 
-  // clone object
-  var extended = clone(obj)
-
-  // copy default keys where undefined
-  Object.keys(defaults).forEach(function (key) {
-    if (typeof extended[key] !== 'undefined') {
-      extended[key] = obj[key]
-    } else {
-      extended[key] = defaults[key]
-    }
-  })
-
-  return extended
+  return extendLevel(clone(obj), defaults)
 }
 
 function debounce (func, wait, immediate) {
