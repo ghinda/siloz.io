@@ -18,8 +18,10 @@
     </div>
 
     {{#if production}}
+      <script src="vendor.min.js"></script>
       <script src="siloz.min.js"></script>
     {{else}}
+      <script src="vendor.js"></script>
       <script src="siloz.js"></script>
     {{/if}}
 

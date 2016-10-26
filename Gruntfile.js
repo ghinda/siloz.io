@@ -100,19 +100,22 @@ module.exports = function (grunt) {
           watch: true
         },
         files: {
-          'build/siloz.js': 'src/app.js'
+          'build/siloz.js': 'src/app.js',
+          'build/vendor.js': 'src/vendor.js'
         }
       },
       dist: {
         files: {
-          'build/siloz.js': 'src/app.js'
+          'build/siloz.js': 'src/app.js',
+          'build/vendor.js': 'src/vendor.js'
         }
       }
     },
     uglify: {
       dist: {
         files: {
-          'build/siloz.min.js': 'build/siloz.js'
+          'build/siloz.min.js': 'build/siloz.js',
+          'build/vendor.min.js': 'build/vendor.js'
         }
       }
     },
