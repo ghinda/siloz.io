@@ -49,9 +49,9 @@ function Settings (actions) {
 
   this.render = function () {
     return `
-      <div class="settings">
+      <form class="settings">
         <button type="button" class="settings-button">
-          settings
+          Settings
         </button>
 
         <div class="settings-popup">
@@ -74,7 +74,7 @@ function Settings (actions) {
             JavaScript
           </label>
         </div>
-      </settings>
+      </form>
     `
   }
 }

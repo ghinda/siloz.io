@@ -25,7 +25,12 @@
   cursor: pointer;
   width: auto;
   appearance: none;
+  background: transparent url('/images/icon-arrow-down.svg') no-repeat right center;
 
   color: #dc322f;
   font-family: monospace;
+}
+
+.editor-bar-pane-close {
+  float: right;
 }

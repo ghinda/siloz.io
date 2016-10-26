@@ -48,7 +48,7 @@ function EditorBar (actions) {
     return foundPlugin
   }
 
-  function change (type) {
+  function changeProcessor (type) {
     return function () {
       // remove last selected plugin
       actions.removePlugin(selected[type])
@@ -88,10 +88,23 @@ function EditorBar (actions) {
     })
   }
 
+  function closePane (type) {
+    return function () {
+      var panes = {}
+      panes[type] = {
+        hidden: true
+      }
+
+      actions.updatePanes(panes)
+    }
+  }
+
   this.mount = function ($container) {
-    $container.querySelector('.editor-bar-select-html').addEventListener('change', change('html'))
-    $container.querySelector('.editor-bar-select-css').addEventListener('change', change('css'))
-    $container.querySelector('.editor-bar-select-js').addEventListener('change', change('js'))
+    for (let type of [ 'html', 'css', 'js' ]) {
+      $container.querySelector(`.editor-bar-select-${type}`).addEventListener('change', changeProcessor(type))
+
+      $container.querySelector(`.editor-bar-pane-close-${type}`).addEventListener('click', closePane(type))
+    }
   }
 
   this.render = function () {
@@ -101,12 +114,24 @@ function EditorBar (actions) {
       <div class="editor-bar">
         <div class="editor-bar-pane editor-bar-pane-html">
           ${createSelect('html', options.html, selected.html)}
+
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-html">
+            <i class="icon icon-close"></i>
+          </button>
         </div>
         <div class="editor-bar-pane editor-bar-pane-css">
           ${createSelect('css', options.css, selected.css)}
+
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-css">
+            <i class="icon icon-close"></i>
+          </button>
         </div>
         <div class="editor-bar-pane editor-bar-pane-js">
           ${createSelect('js', options.js, selected.js)}
+
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-js">
+            <i class="icon icon-close"></i>
+          </button>
         </div>
       </div>
     `

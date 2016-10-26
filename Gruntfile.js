@@ -42,7 +42,7 @@ module.exports = function (grunt) {
           livereload: true,
           base: [
             './build',
-            './'
+            './static'
           ]
         }
       },
@@ -72,10 +72,12 @@ module.exports = function (grunt) {
         'include css': true,
         'resolve url nocheck': true,
         urlfunc: 'data-uri',
-        sourcemap: {inline: true},
-        import: ['nib'],
+        import: ['nib']
       },
       server: {
+        options: {
+          sourcemap: {inline: true}
+        },
         files: {
           'build/siloz.css': 'src/app.css'
         }

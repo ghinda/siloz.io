@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "clean": "rm -rf build/** && cp -a static/** build/",
+    "clean": "rm -rf build/**",
     "dev": "npm run clean && grunt server",
-    "build": "npm run clean && grunt",
+    "build": "npm run clean && cp -a static/** build/ && grunt",
     "deploy": "npm run clean && grunt deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +18,7 @@
     "babelify": "^7.3.0",
     "codemirror": "^5.20.2",
     "connect-livereload": "^0.6.0",
-    "durruti": "0.0.15",
+    "durruti": "^0.0.16",
     "grunt": "^1.0.1",
     "grunt-assemble": "^0.5.0",
     "grunt-browserify": "^5.0.0",
