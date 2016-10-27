@@ -12,5 +12,5 @@
 .editor-is-hidden-css .jotted-pane-css,
 .editor-is-hidden-js .editor-bar-pane-js,
 .editor-is-hidden-js .jotted-pane-js {
-  display: none;
+  display: none !important;
 }

@@ -60,11 +60,14 @@ function EditorWidget (actions) {
         files: actions.getFiles(),
         plugins: plugins
       })
+
+      // move the result pane to the right
+      $container.appendChild($container.querySelector('.jotted-pane-result'))
     })
   }
 
   this.render = function () {
-    return '<div class="editor-widget jotted-theme-bin jotted-theme-siloz"></div>'
+    return '<div class="editor-widget jotted-theme-siloz"></div>'
   }
 }
 

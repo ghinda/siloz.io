@@ -2,6 +2,9 @@
  */
 
 .jotted-theme-siloz {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
   overflow: visible;
   border: 0;
 }
@@ -11,9 +14,16 @@
 }
 
 .jotted-theme-siloz .jotted-pane {
+  position: relative;
+  visibility: visible;
+  display: table-cell;
+
+  width: 100%;
   padding: 0 .2em;
   background: transparent;
   border-color: #eee8d5;
+
+  vertical-align: top;
 }
 
 .jotted-theme-siloz .CodeMirror-linenumber,
@@ -22,12 +32,10 @@
   line-height: 1.2em;
 }
 
-.jotted-theme-siloz .jotted-pane-result {
-  position: relative;
+.jotted-theme-siloz .jotted-pane-result iframe {
   z-index: 10;
-  float: right;
-  height: calc(100% + 2.8em);
-  margin-top: -2.4em;
+  height: calc(100% + 2em);
+  margin-top: -2em;
   background-color: #fff;
   border: 0;
 }

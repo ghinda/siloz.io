@@ -133,6 +133,7 @@ function EditorBar (actions) {
             <i class="icon icon-close"></i>
           </button>
         </div>
+        <div class="editor-bar-pane"></div>
       </div>
     `
   }

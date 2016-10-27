@@ -18,9 +18,9 @@ var defaults = {
     content: ''
   }],
   plugins: [],
-  theme: '',
+  theme: 'solarized light',
 
-  // TODO tab hide/show, width
+  // pane properties (hidden, etc)
   panes: {
     html: {},
     css: {},
