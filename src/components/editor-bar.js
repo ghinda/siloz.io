@@ -115,21 +115,21 @@ function EditorBar (actions) {
         <div class="editor-bar-pane editor-bar-pane-html">
           ${createSelect('html', options.html, selected.html)}
 
-          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-html">
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-html btn btn-link" title="Hide HTML">
             <i class="icon icon-close"></i>
           </button>
         </div>
         <div class="editor-bar-pane editor-bar-pane-css">
           ${createSelect('css', options.css, selected.css)}
 
-          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-css">
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-css btn btn-link" title="Hide CSS">
             <i class="icon icon-close"></i>
           </button>
         </div>
         <div class="editor-bar-pane editor-bar-pane-js">
           ${createSelect('js', options.js, selected.js)}
 
-          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-js">
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-js btn btn-link" title="Hide JavaScript">
             <i class="icon icon-close"></i>
           </button>
         </div>

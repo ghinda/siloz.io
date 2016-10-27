@@ -9,6 +9,8 @@ html,
 body {
   height: 100%;
   margin: 0;
+
+  font-family: sans-serif;
 }
 
 .app,
@@ -22,4 +24,62 @@ body {
 
 .main {
   padding: .4em;
+}
+
+/* buttons
+ */
+.btn {
+  padding: .4em .8em;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+
+  color: #002b36;
+  font-family: monospace;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn:hover {
+  background: #eee8d5;
+}
+
+.btn-link {
+  background: transparent;
+}
+
+.btn-link:hover,
+.btn-link:focus {
+  background: transparent;
+
+  color: #dc322f;
+}
+
+/* popup
+ */
+.popup {
+  padding: .6em;
+  border: 1px solid #93a1a1;
+  background: #fdf9ef;
+  box-shadow: 4px 4px 0 rgba(0,0,0,.12);
+}
+
+/* forms
+ */
+fieldset {
+  border: 0;
+  padding: 0 0 1.2em;
+}
+
+legend {
+  padding: 0 0 .6em;
+
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+label {
+  padding: 0 .8em 0 0;
+  cursor: pointer;
 }

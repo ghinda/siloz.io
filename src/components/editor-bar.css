@@ -12,7 +12,6 @@
   display: table-cell;
   width: 100%;
   height: 100%;
-  border-right: 1px solid #eee8d5;
 }
 
 .editor-bar-pane:last-child {
@@ -20,13 +19,11 @@
 }
 
 .editor-bar-select {
-  padding: .4em;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  width: auto;
   appearance: none;
+  padding: .4em 1em .4em .4em;
+  border: 0;
   background: transparent url('/images/icon-arrow-down.svg') no-repeat right center;
+  cursor: pointer;
 
   color: #dc322f;
   font-family: monospace;

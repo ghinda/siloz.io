@@ -60,9 +60,6 @@ function EditorWidget (actions) {
         files: actions.getFiles(),
         plugins: plugins
       })
-
-      // move the result pane to the right
-      $container.appendChild($container.querySelector('.jotted-pane-result'))
     })
   }
 

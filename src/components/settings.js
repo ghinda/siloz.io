@@ -49,32 +49,44 @@ function Settings (actions) {
 
   this.render = function () {
     return `
-      <form class="settings">
-        <button type="button" class="settings-button">
+      <div class="settings">
+        <button type="button" class="settings-button btn">
           Settings
         </button>
 
-        <div class="settings-popup">
-          <h3>
-            Tabs
-          </h3>
+        <form class="settings-popup popup">
+          <fieldset>
+            <legend>
+              Tabs
+            </legend>
 
-          <label>
-            <input type="checkbox" class="settings-show-html" ${!panes.html.hidden ? 'checked' : ''}>
-            HTML
-          </label>
+            <label>
+              <input type="checkbox" class="settings-show-html" ${!panes.html.hidden ? 'checked' : ''}>
+              HTML
+            </label>
 
-          <label>
-            <input type="checkbox" class="settings-show-css" ${!panes.css.hidden ? 'checked' : ''}>
-            CSS
-          </label>
+            <label>
+              <input type="checkbox" class="settings-show-css" ${!panes.css.hidden ? 'checked' : ''}>
+              CSS
+            </label>
 
-          <label>
-            <input type="checkbox" class="settings-show-js" ${!panes.js.hidden ? 'checked' : ''}>
-            JavaScript
-          </label>
-        </div>
-      </form>
+            <label>
+              <input type="checkbox" class="settings-show-js" ${!panes.js.hidden ? 'checked' : ''}>
+              JavaScript
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>
+              Theme
+            </legend>
+
+            <select>
+              <option></option>
+            </select>
+          </fieldset>
+        </form>
+      </div>
     `
   }
 }

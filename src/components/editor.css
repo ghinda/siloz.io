@@ -14,3 +14,19 @@
 .editor-is-hidden-js .jotted-pane-js {
   display: none !important;
 }
+
+.editor-is-hidden-html .jotted-pane,
+.editor-is-hidden-css .jotted-pane,
+.editor-is-hidden-js .jotted-pane {
+  width: 33.3% !important;
+}
+
+.editor-is-hidden-html.editor-is-hidden-css .jotted-pane,
+.editor-is-hidden-html.editor-is-hidden-js .jotted-pane,
+.editor-is-hidden-css.editor-is-hidden-js .jotted-pane {
+  width: 50% !important;
+}
+
+.editor-is-hidden-html.editor-is-hidden-css.editor-is-hidden-js .jotted-pane {
+  width: 100% !important;
+}
