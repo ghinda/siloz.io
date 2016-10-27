@@ -18,12 +18,9 @@ body {
   height: 100%;
 }
 
-.app {
-  background-color: #fdf6e3;
-}
-
 .main {
   padding: .4em;
+  background-color: #fdf6e3;
 }
 
 /* buttons
@@ -40,19 +37,9 @@ body {
   line-height: 1;
 }
 
-.btn:hover {
+.btn:hover
+.btn:focus {
   background: #eee8d5;
-}
-
-.btn-link {
-  background: transparent;
-}
-
-.btn-link:hover,
-.btn-link:focus {
-  background: transparent;
-
-  color: #dc322f;
 }
 
 /* popup
@@ -82,4 +69,15 @@ legend {
 label {
   padding: 0 .8em 0 0;
   cursor: pointer;
+}
+
+.select {
+  appearance: none;
+  padding: .4em 1em .4em .4em;
+  border: 0;
+  background: transparent url('/images/icon-arrow-down.svg') no-repeat right center;
+  cursor: pointer;
+
+  color: #dc322f;
+  font-family: monospace;
 }

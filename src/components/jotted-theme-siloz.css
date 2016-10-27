@@ -60,6 +60,10 @@
   background: #fdf6e3;
 }
 
+.CodeMirror.cm-s-dark .CodeMirror-gutters {
+  background: #002b36;
+}
+
 .CodeMirror.cm-s-solarized .CodeMirror-linenumber {
   opacity: .4;
 }

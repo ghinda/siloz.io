@@ -65,7 +65,7 @@ function EditorBar (actions) {
 
   function createSelect (type, options, selected) {
     return `
-      <select class="editor-bar-select editor-bar-select-${type}">
+      <select class="select editor-bar-select-${type}">
         ${options.map((opt) => {
           return `
             <option value="${opt.plugin || ''}" ${opt.plugin === selected ? 'selected' : ''}>
@@ -115,21 +115,21 @@ function EditorBar (actions) {
         <div class="editor-bar-pane editor-bar-pane-html">
           ${createSelect('html', options.html, selected.html)}
 
-          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-html btn btn-link" title="Hide HTML">
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-html btn" title="Hide HTML">
             <i class="icon icon-close"></i>
           </button>
         </div>
         <div class="editor-bar-pane editor-bar-pane-css">
           ${createSelect('css', options.css, selected.css)}
 
-          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-css btn btn-link" title="Hide CSS">
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-css btn" title="Hide CSS">
             <i class="icon icon-close"></i>
           </button>
         </div>
         <div class="editor-bar-pane editor-bar-pane-js">
           ${createSelect('js', options.js, selected.js)}
 
-          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-js btn btn-link" title="Hide JavaScript">
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-js btn" title="Hide JavaScript">
             <i class="icon icon-close"></i>
           </button>
         </div>

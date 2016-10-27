@@ -12,6 +12,7 @@ function Main () {
   var $container
   var data = store.get()
   var panes = store.actions.getPanes()
+  var theme = store.actions.getTheme()
 
   var change = function () {
     var newData = store.get()
@@ -39,7 +40,7 @@ function Main () {
 
   this.render = function () {
     return `
-      <div class="main ${panes.html.hidden ? 'main-is-hidden-html' : ''}">
+      <div class="main ${panes.html.hidden ? 'main-is-hidden-html' : ''} siloz-theme-${theme.replace(/ /g, '-')}">
         ${durruti.render(new Header(store.actions))}
         ${durruti.render(new Editor(store.actions))}
       </div>

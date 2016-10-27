@@ -7,6 +7,7 @@ function Settings (actions) {
   var $container
   var popupVisibleClass = 'settings-is-open'
   var panes = actions.getPanes()
+  var theme = actions.getTheme()
 
   function togglePopup (hide) {
     $container.classList.toggle(popupVisibleClass)
@@ -28,6 +29,10 @@ function Settings (actions) {
     }
   }
 
+  function setTheme () {
+    actions.updateTheme(this.value)
+  }
+
   this.mount = function ($node) {
     $container = $node
     var $button = $container.querySelector('.settings-button')
@@ -41,6 +46,8 @@ function Settings (actions) {
     $showHtml.addEventListener('change', togglePane('html'))
     $showCss.addEventListener('change', togglePane('css'))
     $showJs.addEventListener('change', togglePane('js'))
+
+    $container.querySelector('.settings-theme').addEventListener('change', setTheme)
   }
 
   this.unmount = function () {
@@ -81,8 +88,13 @@ function Settings (actions) {
               Theme
             </legend>
 
-            <select>
-              <option></option>
+            <select class="settings-theme select">
+              <option value="solarized light" ${theme === 'solarized light' ? 'selected' : ''}>
+                Solarized Light
+              </option>
+              <option value="solarized dark" ${theme === 'solarized dark' ? 'selected' : ''}>
+                Solarized Dark
+              </option>
             </select>
           </fieldset>
         </form>

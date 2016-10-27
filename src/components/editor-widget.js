@@ -48,7 +48,7 @@ function EditorWidget (actions) {
       {
         name: 'codemirror',
         options: {
-          theme: 'solarized light',
+          theme: actions.getTheme(),
           lineWrapping: true
         }
       }

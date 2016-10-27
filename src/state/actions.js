@@ -53,6 +53,10 @@ function actions (store) {
     return store.set(data)
   }
 
+  function getPanes () {
+    return store.get().panes
+  }
+
   function updatePanes (newPanes) {
     var data = store.get()
     data.panes = util.extend(newPanes, data.panes)
@@ -60,8 +64,15 @@ function actions (store) {
     return store.set(data)
   }
 
-  function getPanes () {
-    return store.get().panes
+  function getTheme () {
+    return store.get().theme
+  }
+
+  function updateTheme (theme) {
+    var data = store.get()
+    data.theme = theme
+
+    return store.set(data)
   }
 
   return {
@@ -73,7 +84,10 @@ function actions (store) {
     removePlugin: removePlugin,
 
     getPanes: getPanes,
-    updatePanes: updatePanes
+    updatePanes: updatePanes,
+
+    getTheme: getTheme,
+    updateTheme: updateTheme
   }
 }
 

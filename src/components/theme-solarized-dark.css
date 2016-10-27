@@ -1,0 +1,39 @@
+/* dark theme
+ */
+
+.siloz-theme-solarized-dark {
+  background-color: #002b36;
+}
+
+.siloz-theme-solarized-dark .header-logo {
+  color: #586e75;
+}
+
+.siloz-theme-solarized-dark .header,
+.siloz-theme-solarized-dark .jotted-theme-siloz .jotted-pane {
+  border-color: #073642;
+}
+
+.siloz-theme-solarized-dark .header-logo {
+  color: #586e75;
+}
+
+.siloz-theme-solarized-dark .btn {
+  color: #93a1a1;
+}
+
+.siloz-theme-solarized-dark .btn:hover,
+.siloz-theme-solarized-dark .btn:focus {
+  background: #073642;
+}
+
+.siloz-theme-solarized-dark .select {
+  background-image: url('/images/icon-arrow-down-white.svg');
+}
+
+.siloz-theme-solarized-dark .popup {
+  background: #003c4b;
+  border-color: #111;
+
+  color: #fff;
+}

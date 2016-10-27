@@ -18,17 +18,6 @@
   border: 0;
 }
 
-.editor-bar-select {
-  appearance: none;
-  padding: .4em 1em .4em .4em;
-  border: 0;
-  background: transparent url('/images/icon-arrow-down.svg') no-repeat right center;
-  cursor: pointer;
-
-  color: #dc322f;
-  font-family: monospace;
-}
-
 .editor-bar-pane-close {
   float: right;
 }
