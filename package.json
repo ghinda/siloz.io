@@ -7,7 +7,7 @@
     "clean": "rm -rf build/**",
     "dev": "npm run clean && grunt server",
     "build": "npm run clean && cp -a static/** build/ && grunt",
-    "deploy": "npm run clean && grunt deploy",
+    "deploy": "npm run build && grunt deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
