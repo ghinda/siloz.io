@@ -71,7 +71,6 @@ module.exports = function (grunt) {
       options: {
         'include css': true,
         'resolve url nocheck': true,
-        urlfunc: 'data-uri',
         import: ['nib']
       },
       server: {
