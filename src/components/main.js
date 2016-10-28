@@ -2,8 +2,8 @@
  */
 
 var durruti = require('durruti')
-var Header = require('./header')
-var Editor = require('./editor')
+var Header = require('./header/header')
+var Editor = require('./editor/editor')
 
 var GlobalStore = require('../state/store')
 var store = new GlobalStore()

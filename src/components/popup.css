@@ -1,17 +1,16 @@
-/* settings
+/* popup
  */
 
-.settings {
+.popup-container {
   position: relative;
   z-index: 20;
-  float: right;
 }
 
-.settings-is-open .settings-popup {
+.popup-container-is-open .popup {
   display: block;
 }
 
-.settings-popup {
+.popup {
   display: none;
 
   position: absolute;
@@ -20,7 +19,7 @@
   width: 20em;
 }
 
-.settings-popup h3 {
+.popup h3 {
   margin: 0;
 }
 

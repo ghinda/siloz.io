@@ -1,7 +1,7 @@
 /* editor widget
  */
 
-var util = require('../util')
+var util = require('../../util')
 var Jotted = require('jotted')
 var globalActions
 
