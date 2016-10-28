@@ -5,17 +5,7 @@
 @import '../node_modules/codemirror/lib/codemirror.css';
 @import '../node_modules/codemirror/theme/solarized.css';
 
-@import './components/**/*.css';
+@import 'browser-upgrade.css';
+@import 'icons.css';
 
-.icon {
-  display: inline-block;
-  width: .8em;
-  height: .8em;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.icon-close {
-  background-image: url('/images/icon-close.svg');
-}
+@import 'components/**/*.css';
