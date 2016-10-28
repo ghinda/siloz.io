@@ -3,6 +3,7 @@
 
 var durruti = require('durruti')
 var Settings = require('./settings')
+var Share = require('./share')
 
 function Header (actions) {
   this.render = function () {
@@ -15,6 +16,7 @@ function Header (actions) {
         </a>
 
         ${durruti.render(new Settings(actions))}
+        ${durruti.render(new Share(actions))}
       </header>
     `
   }

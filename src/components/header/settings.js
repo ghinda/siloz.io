@@ -70,7 +70,6 @@ function Settings (actions) {
         </option>
       </select>
     </fieldset>
-  </form>
   `)
 
   this.unmount = settingsPopup.unmount

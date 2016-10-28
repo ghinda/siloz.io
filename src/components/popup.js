@@ -5,14 +5,15 @@ var util = require('../util')
 
 function Popup (name, title, content) {
   var $container
+  var $button
   var popupVisibleClass = 'popup-container-is-open'
 
-  function togglePopup (hide) {
+  function togglePopup () {
     $container.classList.toggle(popupVisibleClass)
   }
 
   function hidePopup (e) {
-    if (util.closest(e.target, '.settings-button') || util.closest(e.target, '.settings-popup')) {
+    if (util.closest(e.target, '.popup') || e.target === $button) {
       return
     }
 
@@ -21,7 +22,7 @@ function Popup (name, title, content) {
 
   this.mount = function ($node) {
     $container = $node
-    var $button = $container.querySelector('.settings-button')
+    $button = $container.querySelector('.popup-button')
 
     $button.addEventListener('click', togglePopup)
     document.addEventListener('click', hidePopup)
@@ -34,8 +35,8 @@ function Popup (name, title, content) {
   this.render = function () {
     return `
       <div class="popup-container ${name}">
-        <button type="button" class="${name}-button btn">
-          Settings
+        <button type="button" class="${name}-button popup-button btn">
+          ${title}
         </button>
 
         <form class="${name}-popup popup">

@@ -21,7 +21,7 @@ module.exports = function (grunt) {
       },
       css: {
         files: [
-          'src/{,*/}*.css'
+          'src/**/*.css'
         ],
         tasks: [ 'stylus:server' ]
       },
