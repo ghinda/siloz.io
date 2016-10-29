@@ -25,7 +25,9 @@ var defaults = {
     html: {},
     css: {},
     js: {}
-  }
+  },
+
+  short_url: ''
 }
 
 var GlobalStore = function () {

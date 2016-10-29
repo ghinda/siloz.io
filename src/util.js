@@ -93,11 +93,51 @@ function async (arr, done, i = 0) {
   })
 }
 
+function fetch (path, options, callback) {
+  // options not specified
+  if (typeof options === 'function') {
+    callback = options
+    options = {}
+  }
+
+  options = extend(options, {
+    type: 'GET',
+    data: {}
+  })
+
+  callback = callback || function () {}
+
+  var request = new window.XMLHttpRequest()
+  request.open(options.type, path)
+  request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+  request.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+
+  request.onload = function () {
+    if (request.status >= 200 && request.status < 400) {
+      // success
+      var data = JSON.parse(request.responseText || '{}')
+
+      callback(null, data)
+    } else {
+      // error
+      callback(request)
+    }
+  }
+
+  request.onerror = function () {
+    // error
+    callback(request)
+  }
+
+  request.send(JSON.stringify(options.data))
+}
+
 module.exports = {
   clone: clone,
   extend: extend,
   closest: closest,
   debounce: debounce,
   loadScript: loadScript,
-  async: async
+  async: async,
+  fetch: fetch
 }

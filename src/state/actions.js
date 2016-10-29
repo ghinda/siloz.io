@@ -2,6 +2,7 @@
  */
 
 var util = require('../util')
+var shortUrl = require('./short-url')
 
 function actions (store) {
   function getFiles () {
@@ -75,6 +76,66 @@ function actions (store) {
     return store.set(data)
   }
 
+  function getShortUrl () {
+    return store.get().short_url
+  }
+
+  var longUrl
+
+  function updateShortUrl () {
+    // TODO if existing short_url,
+    // check if window.location.href is different from longUrl (not already saved),
+    // and update link.
+
+    // else
+    // window.location.href to api, and get short url
+    // set short_url in state.
+
+    // TODO too many requests trigger on load,
+    // needs throttling.
+    var data = store.get()
+    if (!data.short_url) {
+      longUrl = window.location.href
+
+      shortUrl.create({
+        long_url: longUrl
+      }, (err, res) => {
+        if (err) {
+          return console.log(err)
+        }
+
+        data.short_url = res.short_url
+        store.set(data)
+      })
+    } else if (longUrl !== window.location.href) {
+      longUrl = window.location.href
+
+      // TODO update here
+      shortUrl.update({
+        long_url: longUrl,
+        short_url: data.short_url
+      }, (err, res) => {
+        if (err) {
+          return console.log(err)
+        }
+
+        console.log(err, res)
+      })
+    }
+  }
+
+  var debouncedUpdateShortUrl = util.debounce(updateShortUrl, 500)
+
+  function startShortUrlUpdater () {
+    // update short url when data changes
+    store.on('change', debouncedUpdateShortUrl)
+  }
+
+  function stopShortUrlUpdater () {
+    // stop monitoring data changes
+    store.off('change', debouncedUpdateShortUrl)
+  }
+
   return {
     getFiles: getFiles,
     updateFile: updateFile,
@@ -87,7 +148,11 @@ function actions (store) {
     updatePanes: updatePanes,
 
     getTheme: getTheme,
-    updateTheme: updateTheme
+    updateTheme: updateTheme,
+
+    getShortUrl: getShortUrl,
+    startShortUrlUpdater: startShortUrlUpdater,
+    stopShortUrlUpdater: stopShortUrlUpdater
   }
 }
 
