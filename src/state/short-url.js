@@ -8,8 +8,11 @@ if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
 }
 
 var apiUrl = 'http://localhost:3000'
+var shortUrl = apiUrl
+
 if (env !== 'local') {
   apiUrl = 'https://prajina-ghinda.rhcloud.com'
+  shortUrl = 'http://s.siloz.io'
 }
 
 var util = require('../util')
@@ -47,7 +50,7 @@ function create (data, callback) {
     }
 
     // set full url for shorturl
-    res.short_url = `${apiUrl}/${res.short_url}`
+    res.short_url = `${shortUrl}/${res.short_url}`
 
     // save session
     saveSession({
