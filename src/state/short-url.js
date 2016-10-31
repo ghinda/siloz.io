@@ -51,7 +51,7 @@ function create (data, callback) {
 
     // save session
     saveSession({
-      token: res.session
+      token: res.token
     })
 
     callback(null, res)
@@ -63,15 +63,13 @@ function update (data, callback) {
   data.short_url = data.short_url.replace(`${apiUrl}/`, '')
 
   // add token
-  data.session = session.token
+  data.token = session.token
 
   util.fetch(`${apiUrl}/api/`, {
     type: 'PUT',
     data: data
   }, (err, res) => {
     if (err) {
-      // TODO create new short url if session error
-
       return callback(err)
     }
 

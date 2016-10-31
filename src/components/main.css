@@ -1,18 +1,6 @@
 /* main
  */
 
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-
-  font-family: sans-serif;
-}
-
 .app,
 .main {
   height: 100%;
@@ -21,54 +9,4 @@ body {
 .main {
   padding: .4em;
   background-color: #fdf6e3;
-}
-
-/* buttons
- */
-.btn {
-  padding: .4em .8em;
-  border: 0;
-  cursor: pointer;
-  background: transparent;
-
-  color: #002b36;
-  font-family: monospace;
-  text-decoration: none;
-  line-height: 1;
-}
-
-.btn:hover
-.btn:focus {
-  background: #eee8d5;
-}
-
-/* forms
- */
-fieldset {
-  border: 0;
-  padding: 0 0 1.2em;
-}
-
-legend {
-  padding: 0 0 .6em;
-
-  font-size: 1.2em;
-  font-weight: bold;
-  font-family: monospace;
-}
-
-label {
-  padding: 0 .8em 0 0;
-  cursor: pointer;
-}
-
-.select {
-  appearance: none;
-  padding: .4em 1em .4em .4em;
-  border: 0;
-  background: transparent url('/images/icon-arrow-down.svg') no-repeat right center;
-  cursor: pointer;
-
-  color: #dc322f;
-  font-family: monospace;
 }

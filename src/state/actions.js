@@ -80,19 +80,12 @@ function actions (store) {
     return store.get().short_url
   }
 
-  var longUrl
+  var longUrl = ''
 
   function updateShortUrl () {
-    // TODO if existing short_url,
-    // check if window.location.href is different from longUrl (not already saved),
+    // existing short_url's,
+    // check if window.location.href is not already saved
     // and update link.
-
-    // else
-    // window.location.href to api, and get short url
-    // set short_url in state.
-
-    // TODO too many requests trigger on load,
-    // needs throttling.
     var data = store.get()
     if (!data.short_url) {
       longUrl = window.location.href
@@ -110,16 +103,21 @@ function actions (store) {
     } else if (longUrl !== window.location.href) {
       longUrl = window.location.href
 
-      // TODO update here
+      // update existing short url
       shortUrl.update({
         long_url: longUrl,
         short_url: data.short_url
       }, (err, res) => {
         if (err) {
+          // stop url updater.
+          stopShortUrlUpdater()
+
+          // delete existing short_url
+          data.short_url = ''
+          store.set(data)
+
           return console.log(err)
         }
-
-        console.log(err, res)
       })
     }
   }
@@ -151,6 +149,7 @@ function actions (store) {
     updateTheme: updateTheme,
 
     getShortUrl: getShortUrl,
+    updateShortUrl: updateShortUrl,
     startShortUrlUpdater: startShortUrlUpdater,
     stopShortUrlUpdater: stopShortUrlUpdater
   }

@@ -1,0 +1,29 @@
+/* share
+ */
+
+.popup.share-popup {
+  width: 24em;
+}
+
+.share .share-url {
+  overflow: hidden;
+}
+
+.share-url-input {
+  display: inline-block;
+  width: 80%;
+}
+
+.share-url-copy {
+  display: inline-block;
+  width: 18%;
+}
+
+.share-is-generated .share-generate,
+.share-url-short {
+  display: none;
+}
+
+.share-is-generated .share-url {
+  display: block;
+}
