@@ -63,7 +63,7 @@ function create (data, callback) {
 
 function update (data, callback) {
   // remove api url from short_url
-  data.short_url = data.short_url.replace(`${apiUrl}/`, '')
+  data.short_url = data.short_url.replace(`${shortUrl}/`, '')
 
   // add token
   data.token = session.token
