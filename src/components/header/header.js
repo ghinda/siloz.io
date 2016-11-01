@@ -41,7 +41,7 @@ function Header (actions) {
         </a>
 
         ${durruti.render(new Settings(actions, storeInternal.actions))}
-        ${durruti.render(new Share(storeInternal.actions))}
+        ${durruti.render(new Share(actions, storeInternal.actions))}
       </header>
     `
   }

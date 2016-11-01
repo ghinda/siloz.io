@@ -4,9 +4,9 @@
 var util = require('../../util')
 var Popup = require('../popup')
 
-function Share (actions) {
+function Share (actions, actionsInternal) {
   var self = util.inherits(this, Popup)
-  Popup.call(self, 'share', actions)
+  Popup.call(self, 'share', actionsInternal)
 
   var shortUrl = actions.getShortUrl()
   var longUrl = ''

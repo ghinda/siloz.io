@@ -40,7 +40,7 @@ function saveSession (newSession) {
   window.localStorage.setItem(sessionKey, JSON.stringify(session))
 }
 
-function create (data, callback) {
+function create (data, callback = () => {}) {
   util.fetch(`${apiUrl}/api/`, {
     type: 'POST',
     data: data
@@ -61,7 +61,7 @@ function create (data, callback) {
   })
 }
 
-function update (data, callback) {
+function update (data, callback = () => {}) {
   // remove api url from short_url
   data.short_url = data.short_url.replace(`${shortUrl}/`, '')
 
