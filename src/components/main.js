@@ -11,13 +11,12 @@ var store = new GlobalStore()
 function Main () {
   var $container
   var data = store.get()
-  var panes = store.actions.getPanes()
   var theme = store.actions.getTheme()
 
   var change = function () {
     var newData = store.get()
 
-    // don't compare the files
+    // don't compare files
     delete data.files
     delete newData.files
 
@@ -40,7 +39,7 @@ function Main () {
 
   this.render = function () {
     return `
-      <div class="main ${panes.html.hidden ? 'main-is-hidden-html' : ''} siloz-theme-${theme.replace(/ /g, '-')}">
+      <div class="main siloz-theme-${theme.replace(/ /g, '-')}">
         ${durruti.render(new Header(store.actions))}
         ${durruti.render(new Editor(store.actions))}
       </div>

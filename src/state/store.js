@@ -28,12 +28,7 @@ var defaults = {
     js: {}
   },
 
-  short_url: '',
-
-  // not stored in url
-  _internal: {
-    popup: {}
-  }
+  short_url: ''
 }
 
 var GlobalStore = function () {
@@ -57,9 +52,6 @@ var GlobalStore = function () {
   this.on('change', () => {
     // save in hash
     var data = this.get()
-
-    // delete internal props
-    delete data._internal
 
     var compressed = LZString.compressToEncodedURIComponent(JSON.stringify(data))
     window.history.replaceState(null, null, '#' + compressed)

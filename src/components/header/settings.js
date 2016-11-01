@@ -4,9 +4,9 @@
 var util = require('../../util')
 var Popup = require('../popup')
 
-function Settings (actions) {
+function Settings (actions, actionsInternal) {
   var self = util.inherits(this, Popup)
-  Popup.call(self, 'settings', actions)
+  Popup.call(self, 'settings', actionsInternal)
 
   var panes = actions.getPanes()
   var theme = actions.getTheme()
