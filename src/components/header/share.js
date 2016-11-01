@@ -5,6 +5,9 @@ var util = require('../../util')
 var Popup = require('../popup')
 
 function Share (actions) {
+  var self = util.inherits(this, Popup)
+  Popup.call(self, 'share', actions)
+
   var shortUrl = actions.getShortUrl()
   var longUrl = ''
   var watcher
@@ -34,8 +37,9 @@ function Share (actions) {
     actions.updateShortUrl()
   }
 
-  this.mount = function ($container) {
-    sharePopup.mount($container)
+  self.mount = function ($container) {
+    self.super.mount.call(self, $container)
+
     var $shortUrl = $container.querySelector('.share-url-input-short')
     var $shortUrlCopy = $container.querySelector('.share-url-copy-short')
     var $longUrl = $container.querySelector('.share-url-input-long')
@@ -58,39 +62,8 @@ function Share (actions) {
     }
   }
 
-  var sharePopup = new Popup('share', 'Share', `
-    <fieldset class="${shortUrl ? 'share-is-generated' : ''}">
-      <legend>
-        Short URL
-      </legend>
-
-      <button type="button" class="btn btn-primary share-generate">
-        Generate Short URL
-      </button>
-
-      <div class="share-url share-url-short">
-        <input type="text" class="share-url-input share-url-input-short" value="${shortUrl}" readonly>
-        <button type="button" class="btn share-url-copy share-url-copy-short">
-          Copy
-        </button>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>
-        Persistent URL
-      </legend>
-
-      <div class="share-url">
-        <input type="text" class="share-url-input share-url-input-long" value="${longUrl}" readonly>
-        <button type="button" class="btn share-url-copy share-url-copy-long">
-          Copy
-        </button>
-      </div>
-    </fieldset>
-  `)
-
-  this.unmount = function () {
-    sharePopup.unmount()
+  self.unmount = function () {
+    self.super.unmount.call(self)
 
     if (watcher) {
       clearTimeout(watcher)
@@ -101,7 +74,40 @@ function Share (actions) {
     }
   }
 
-  this.render = sharePopup.render
+  self.render = () => {
+    return self.super.render.call(self, 'Share', `
+      <fieldset class="${shortUrl ? 'share-is-generated' : ''}">
+        <legend>
+          Short URL
+        </legend>
+
+        <button type="button" class="btn btn-primary share-generate">
+          Generate Short URL
+        </button>
+
+        <div class="share-url share-url-short">
+          <input type="text" class="share-url-input share-url-input-short" value="${shortUrl}" readonly>
+          <button type="button" class="btn share-url-copy share-url-copy-short">
+            Copy
+          </button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          Persistent URL
+        </legend>
+
+        <div class="share-url">
+          <input type="text" class="share-url-input share-url-input-long" value="${longUrl}" readonly>
+          <button type="button" class="btn share-url-copy share-url-copy-long">
+            Copy
+          </button>
+        </div>
+      </fieldset>
+    `)
+  }
+
+  return self
 }
 
 module.exports = Share

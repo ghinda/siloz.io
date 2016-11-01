@@ -4,6 +4,7 @@
 var Store = require('durruti/store')
 var LZString = require('lz-string')
 var actions = require('./actions')
+var util = require('../util')
 
 var defaults = {
   version: 1,
@@ -27,7 +28,12 @@ var defaults = {
     js: {}
   },
 
-  short_url: ''
+  short_url: '',
+
+  // not stored in url
+  _internal: {
+    popup: {}
+  }
 }
 
 var GlobalStore = function () {
@@ -43,7 +49,7 @@ var GlobalStore = function () {
   } catch (err) {}
 
   if (hashData) {
-    this.set(hashData)
+    this.set(util.extend(hashData, defaults))
   } else {
     this.set(defaults)
   }
@@ -51,6 +57,9 @@ var GlobalStore = function () {
   this.on('change', () => {
     // save in hash
     var data = this.get()
+
+    // delete internal props
+    delete data._internal
 
     var compressed = LZString.compressToEncodedURIComponent(JSON.stringify(data))
     window.history.replaceState(null, null, '#' + compressed)

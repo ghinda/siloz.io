@@ -5,6 +5,9 @@ var util = require('../../util')
 var Popup = require('../popup')
 
 function Settings (actions) {
+  var self = util.inherits(this, Popup)
+  Popup.call(self, 'settings', actions)
+
   var panes = actions.getPanes()
   var theme = actions.getTheme()
 
@@ -20,8 +23,8 @@ function Settings (actions) {
     actions.updateTheme(this.value)
   }
 
-  this.mount = function ($container) {
-    settingsPopup.mount($container)
+  self.mount = function ($container) {
+    self.super.mount.call(self, $container)
 
     var $showHtml = $container.querySelector('.settings-show-html')
     var $showCss = $container.querySelector('.settings-show-css')
@@ -34,46 +37,49 @@ function Settings (actions) {
     $container.querySelector('.settings-theme').addEventListener('change', setTheme)
   }
 
-  var settingsPopup = new Popup('settings', 'Settings', `
-    <fieldset>
-      <legend>
-        Tabs
-      </legend>
+  self.unmount = self.super.unmount.bind(self)
 
-      <label>
-        <input type="checkbox" class="settings-show-html" ${!panes.html.hidden ? 'checked' : ''}>
-        HTML
-      </label>
+  self.render = () => {
+    return self.super.render.call(self, 'Settings', `
+      <fieldset>
+        <legend>
+          Tabs
+        </legend>
 
-      <label>
-        <input type="checkbox" class="settings-show-css" ${!panes.css.hidden ? 'checked' : ''}>
-        CSS
-      </label>
+        <label>
+          <input type="checkbox" class="settings-show-html" ${!panes.html.hidden ? 'checked' : ''}>
+          HTML
+        </label>
 
-      <label>
-        <input type="checkbox" class="settings-show-js" ${!panes.js.hidden ? 'checked' : ''}>
-        JavaScript
-      </label>
-    </fieldset>
+        <label>
+          <input type="checkbox" class="settings-show-css" ${!panes.css.hidden ? 'checked' : ''}>
+          CSS
+        </label>
 
-    <fieldset>
-      <legend>
-        Theme
-      </legend>
+        <label>
+          <input type="checkbox" class="settings-show-js" ${!panes.js.hidden ? 'checked' : ''}>
+          JavaScript
+        </label>
+      </fieldset>
 
-      <select class="settings-theme select">
-        <option value="solarized light" ${theme === 'solarized light' ? 'selected' : ''}>
-          Solarized Light
-        </option>
-        <option value="solarized dark" ${theme === 'solarized dark' ? 'selected' : ''}>
-          Solarized Dark
-        </option>
-      </select>
-    </fieldset>
-  `)
+      <fieldset>
+        <legend>
+          Theme
+        </legend>
 
-  this.unmount = settingsPopup.unmount
-  this.render = settingsPopup.render
+        <select class="settings-theme select">
+          <option value="solarized light" ${theme === 'solarized light' ? 'selected' : ''}>
+            Solarized Light
+          </option>
+          <option value="solarized dark" ${theme === 'solarized dark' ? 'selected' : ''}>
+            Solarized Dark
+          </option>
+        </select>
+      </fieldset>
+    `)
+  }
+
+  return self
 }
 
 module.exports = Settings

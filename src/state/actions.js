@@ -136,6 +136,17 @@ function actions (store) {
     store.off('change', debouncedUpdateShortUrl)
   }
 
+  function getPopup (name) {
+    return store.get()._internal.popup[name]
+  }
+
+  function updatePopup (name, state) {
+    var data = store.get()
+    data._internal.popup[name] = state
+
+    store.set(data)
+  }
+
   return {
     getFiles: getFiles,
     updateFile: updateFile,
@@ -153,7 +164,10 @@ function actions (store) {
     getShortUrl: getShortUrl,
     updateShortUrl: updateShortUrl,
     startShortUrlUpdater: startShortUrlUpdater,
-    stopShortUrlUpdater: stopShortUrlUpdater
+    stopShortUrlUpdater: stopShortUrlUpdater,
+
+    getPopup: getPopup,
+    updatePopup: updatePopup
   }
 }
 

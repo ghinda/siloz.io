@@ -132,6 +132,15 @@ function fetch (path, options, callback) {
   request.send(JSON.stringify(options.data))
 }
 
+function inherits (baseClass, superClass) {
+  baseClass.prototype = Object.create(superClass.prototype)
+  baseClass.prototype.constructor = baseClass
+
+  baseClass.super = Object.getPrototypeOf(baseClass.prototype)
+
+  return baseClass
+}
+
 module.exports = {
   clone: clone,
   extend: extend,
@@ -139,5 +148,7 @@ module.exports = {
   debounce: debounce,
   loadScript: loadScript,
   async: async,
-  fetch: fetch
+  fetch: fetch,
+
+  inherits: inherits
 }
