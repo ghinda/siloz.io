@@ -12,6 +12,8 @@ function Share (actions, actionsInternal) {
   var longUrl = ''
   var watcher
 
+  var generating = actionsInternal.getLoading('generate-url')
+
   if (typeof window !== 'undefined') {
     longUrl = window.location.href
   }
@@ -34,7 +36,12 @@ function Share (actions, actionsInternal) {
   }
 
   function generate () {
-    actions.updateShortUrl()
+    // loading
+    actionsInternal.updateLoading('generate-url', true)
+
+    actions.updateShortUrl(() => {
+      actionsInternal.updateLoading('generate-url', false)
+    })
   }
 
   self.mount = function ($container) {
@@ -81,7 +88,7 @@ function Share (actions, actionsInternal) {
           Short URL
         </legend>
 
-        <button type="button" class="btn btn-primary share-generate">
+        <button type="button" class="btn btn-primary share-generate ${generating ? 'is-loading' : ''}">
           Generate Short URL
         </button>
 

@@ -6,7 +6,8 @@ var Store = require('durruti/store')
 var actions = require('./actions-internal')
 
 var defaults = {
-  popup: {}
+  popup: {},
+  loading: {}
 }
 
 var InternalStore = function () {

@@ -13,9 +13,23 @@ function actions (store) {
     store.set(data)
   }
 
+  function getLoading (name) {
+    return store.get().loading[name]
+  }
+
+  function updateLoading (name, state) {
+    var data = store.get()
+    data.loading[name] = state
+
+    store.set(data)
+  }
+
   return {
     getPopup: getPopup,
-    updatePopup: updatePopup
+    updatePopup: updatePopup,
+
+    getLoading: getLoading,
+    updateLoading: updateLoading
   }
 }
 

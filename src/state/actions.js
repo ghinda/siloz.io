@@ -82,12 +82,18 @@ function actions (store) {
 
   var longUrl = ''
 
-  function updateShortUrl () {
+  function updateShortUrl (force, callback = () => {}) {
+    // force not defined, but callback is
+    if (typeof force === 'function') {
+      callback = force
+      force = false
+    }
+
     // existing short_url's,
     // check if window.location.href is not already saved
     // and update link.
     var shortUrl = getShortUrl()
-    if (!shortUrl) {
+    if (!shortUrl || force) {
       longUrl = window.location.href
 
       shortUrlService.create({
@@ -103,7 +109,19 @@ function actions (store) {
 
         // after short_url is added to hash,
         // update long_url to point to url with hash.
-        updateShortUrl()
+        longUrl = window.location.href
+
+        // update existing short url
+        shortUrlService.update({
+          long_url: longUrl,
+          short_url: res.short_url
+        }, (err, res) => {
+          if (err) {
+            return console.log(err)
+          }
+
+          callback()
+        })
       })
     } else if (longUrl !== window.location.href) {
       longUrl = window.location.href
@@ -124,6 +142,8 @@ function actions (store) {
 
           return console.log(err)
         }
+
+        callback()
       })
     }
   }
