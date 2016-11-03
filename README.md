@@ -1,4 +1,4 @@
-# [siloz.io](http://www.siloz.io/)
+# [siloz.io](https://www.siloz.io/)
 
 siloz.io is a private code playground in the browser.
 
