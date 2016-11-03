@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "clean": "rm -rf build/**",
+    "clean": "mkdir -p build && rm -rf build/ && mkdir -p build",
     "dev": "npm run clean && grunt server",
     "build": "npm run clean && cp -a static/** build/ && grunt",
     "deploy": "npm run build && grunt deploy",
