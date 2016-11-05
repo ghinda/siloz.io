@@ -8,19 +8,13 @@
 }
 
 .header-logo {
-  color: #073642;
+  display: inline-block;
+
+  opacity: .8;
 }
 
 .header-logo:hover {
-  color: #002b36;
-}
-
-.header-logo h1 {
-  display: inline-block;
-  margin: 0;
-
-  font-size: 1.2em;
-  font-family: monospace;
+  opacity: 1;
 }
 
 .settings,

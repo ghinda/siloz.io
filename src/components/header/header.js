@@ -35,9 +35,7 @@ function Header (actions) {
     return `
       <header class="header">
         <a href="/" class="header-logo">
-          <h1>
-            siloz.io
-          </h1>
+          <img src="/images/logo.png" height="16" alt="siloz.io">
         </a>
 
         ${durruti.render(new Settings(actions, storeInternal.actions))}
