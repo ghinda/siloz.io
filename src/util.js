@@ -141,6 +141,44 @@ function inherits (baseClass, superClass) {
   return baseClass
 }
 
+function hash (key, value) {
+  var hashParts = []
+  if (window.location.hash) {
+    hashParts = window.location.hash.substr(1).split('&')
+  }
+
+  var parsedHash = {}
+  var stringHash = ''
+
+  hashParts.forEach((part, i) => {
+    var subParts = part.split('=')
+    parsedHash[subParts[0]] = subParts[1] || ''
+  })
+
+  if (key) {
+    if (value) {
+      parsedHash[key] = value
+    } else {
+      return parsedHash[key]
+    }
+  }
+
+  // rebuild to string
+  Object.keys(parsedHash).forEach((key, i) => {
+    if (i > 0) {
+      stringHash += '&'
+    }
+
+    stringHash += key
+
+    if (parsedHash[key]) {
+      stringHash += `=${parsedHash[key]}`
+    }
+  })
+
+  return stringHash
+}
+
 module.exports = {
   clone: clone,
   extend: extend,
@@ -149,6 +187,7 @@ module.exports = {
   loadScript: loadScript,
   async: async,
   fetch: fetch,
+  hash: hash,
 
   inherits: inherits
 }

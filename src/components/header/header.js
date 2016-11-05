@@ -11,6 +11,8 @@ var storeInternal = new InternalStore()
 function Header (actions) {
   var $container
   var data = storeInternal.get()
+  var actionsInternal = storeInternal.actions
+  var loadingCollaborate = actionsInternal.getLoading('collaborate')
 
   var change = function () {
     var newData = storeInternal.get()
@@ -21,13 +23,32 @@ function Header (actions) {
     }
   }
 
+  function doneLoadingCollaborate () {
+    actionsInternal.updateLoading('collaborate', false)
+  }
+
   this.mount = function ($node) {
     $container = $node
+
+    $container.querySelector('.collaborate').addEventListener('click', () => {
+      // loading
+      actionsInternal.updateLoading('collaborate', true)
+
+      window.TogetherJS()
+
+      window.TogetherJS.on('ready', doneLoadingCollaborate)
+      window.TogetherJS.on('close', doneLoadingCollaborate)
+    })
 
     storeInternal.on('change', change)
   }
 
   this.unmount = function () {
+    if (window.TogetherJS) {
+      window.TogetherJS.off('ready', doneLoadingCollaborate)
+      window.TogetherJS.off('close', doneLoadingCollaborate)
+    }
+
     storeInternal.off('change', change)
   }
 
@@ -40,6 +61,10 @@ function Header (actions) {
 
         ${durruti.render(new Settings(actions, storeInternal.actions))}
         ${durruti.render(new Share(actions, storeInternal.actions))}
+
+        <button type="button" class="btn collaborate ${loadingCollaborate ? 'is-loading' : ''}">
+          Collaborate
+        </button>
       </header>
     `
   }

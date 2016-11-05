@@ -39,7 +39,7 @@ var GlobalStore = function () {
 
   try {
     if (window.location.hash) {
-      hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(window.location.hash.substr(1)))
+      hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(util.hash('s')))
     }
   } catch (err) {}
 
@@ -54,7 +54,7 @@ var GlobalStore = function () {
     var data = this.get()
 
     var compressed = LZString.compressToEncodedURIComponent(JSON.stringify(data))
-    window.history.replaceState(null, null, '#' + compressed)
+    window.history.replaceState(null, null, '#' + util.hash('s', compressed))
   })
 }
 
