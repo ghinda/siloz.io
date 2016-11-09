@@ -59,7 +59,12 @@ function Header (actions) {
           <img src="/images/logo.png" height="16" alt="siloz.io">
         </a>
 
+        <a href="https://github.com/ghinda/siloz.io#silozio" target="_blank" class="btn">
+          Help
+        </a>
+
         ${durruti.render(new Settings(actions, storeInternal.actions))}
+
         ${durruti.render(new Share(actions, storeInternal.actions))}
 
         <button type="button" class="btn collaborate ${loadingCollaborate ? 'is-loading' : ''}">
