@@ -4,6 +4,7 @@
 var durruti = require('durruti')
 var Settings = require('./settings')
 var Share = require('./share')
+var About = require('./about')
 
 var InternalStore = require('../../state/store-internal')
 var storeInternal = new InternalStore()
@@ -59,10 +60,7 @@ function Header (actions) {
           <img src="/images/logo.png" height="16" alt="siloz.io">
         </a>
 
-        <a href="https://github.com/ghinda/siloz.io#silozio" target="_blank" class="btn">
-          Help
-        </a>
-
+        ${durruti.render(new About(actions, storeInternal.actions))}
         ${durruti.render(new Settings(actions, storeInternal.actions))}
 
         ${durruti.render(new Share(actions, storeInternal.actions))}

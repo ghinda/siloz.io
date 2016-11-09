@@ -13,6 +13,20 @@ body {
   font-family: sans-serif;
 }
 
+h1,
+h2,
+h3 {
+  margin: 0 0 .2em;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+p {
+  margin: 0 0 .8em;
+}
+
 a img {
   border: 0;
 }
