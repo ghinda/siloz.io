@@ -4,11 +4,14 @@
 /* styling
  */
 .popup {
+  margin-top: 8px;
   padding: .6em;
   border: 1px solid rgba(0,0,0,.12);
-  background: #fdf9ef;
-  box-shadow: 4px 4px 0 rgba(0,0,0,.12);
+  background: #fdfbf4;
+  box-shadow: 0 0 0 8px #fdfbf4, 16px 16px 0 rgba(0,0,0,.2);
 }
+
+
 
 /* layout
  */

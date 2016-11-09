@@ -34,15 +34,13 @@ function Help (actions, actionsInternal) {
       </p>
 
       <p>
-        When a short url is generated, the current url that includes the source code is saved on the server.
+        When a short url is generated, the url  - that includes the source code - is saved on the server, along with a unique token.
       </p>
 
       <p>
-        To be able to update the source code of the same short url, a unique token is generated and saved on the server and the client.
-      </p>
-
-      <p>
-        We run our own open-source url shortener (<a href="https://github.com/ghinda/prajina" target="_blank">prajina</a>).
+        <a href="https://github.com/ghinda/siloz.io" target="_blank">
+          Source code available on GitHub.
+        </a>
       </p>
     `)
   }
