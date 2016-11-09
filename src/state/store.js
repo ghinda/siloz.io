@@ -31,11 +31,28 @@ var defaults = {
   short_url: ''
 }
 
+function replaceLocationHash () {
+  if (typeof window === 'undefined') {
+    return () => {}
+  }
+
+  if (typeof window.history.replaceState !== 'undefined') {
+    return (hash) => {
+      window.history.replaceState(null, null, `#${hash}`)
+    }
+  } else {
+    return (hash) => {
+      window.location.replace(`${window.location.href.split('#')[0]}#${hash}`)
+    }
+  }
+}
+
 var GlobalStore = function () {
   Store.call(this)
   this.actions = actions(this)
 
   var hashData = null
+  var replaceHash = replaceLocationHash()
 
   try {
     if (window.location.hash) {
@@ -54,7 +71,7 @@ var GlobalStore = function () {
     var data = this.get()
 
     var compressed = LZString.compressToEncodedURIComponent(JSON.stringify(data))
-    window.history.replaceState(null, null, '#' + util.hash('s', compressed))
+    replaceHash(util.hash('s', compressed))
   })
 }
 
