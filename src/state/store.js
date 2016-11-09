@@ -47,19 +47,26 @@ function replaceLocationHash () {
   }
 }
 
+function parseHash () {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  try {
+    return JSON.parse(LZString.decompressFromEncodedURIComponent(util.hash('s')))
+  } catch (err) {}
+
+  return null
+}
+
 var GlobalStore = function () {
   Store.call(this)
   this.actions = actions(this)
 
-  var hashData = null
   var replaceHash = replaceLocationHash()
+  var compressedData = ''
 
-  try {
-    if (window.location.hash) {
-      hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(util.hash('s')))
-    }
-  } catch (err) {}
-
+  var hashData = parseHash()
   if (hashData) {
     this.set(util.extend(hashData, defaults))
   } else {
@@ -70,9 +77,20 @@ var GlobalStore = function () {
     // save in hash
     var data = this.get()
 
-    var compressed = LZString.compressToEncodedURIComponent(JSON.stringify(data))
-    replaceHash(util.hash('s', compressed))
+    compressedData = LZString.compressToEncodedURIComponent(JSON.stringify(data))
+    replaceHash(util.hash('s', compressedData))
   })
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('hashchange', () => {
+      // force page reload if only hash changed,
+      // and compressed data is different.
+      // eg. manually changing url hash.
+      if (util.hash('s') !== compressedData) {
+        window.location.reload()
+      }
+    })
+  }
 }
 
 GlobalStore.prototype = Object.create(Store.prototype)
