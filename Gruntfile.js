@@ -42,7 +42,8 @@ module.exports = function (grunt) {
           livereload: true,
           base: [
             './build',
-            './static'
+            './static',
+            './'
           ]
         }
       },
@@ -103,7 +104,8 @@ module.exports = function (grunt) {
         },
         files: {
           'build/siloz.js': 'src/app.js',
-          'build/vendor.js': 'src/vendor.js'
+          'build/vendor.js': 'src/vendor.js',
+          'build/tests.js': 'test/*.js'
         }
       },
       dist: {
@@ -121,7 +123,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    'saucelabs-mocha': {
+    'saucelabs-custom': {
       all: {
         options: {
           urls: [
@@ -135,10 +137,6 @@ module.exports = function (grunt) {
             }, {
               browserName: 'firefox',
               platform: 'Linux'
-            }, {
-              browserName: 'android',
-              platform: 'Linux',
-              version: '5.1'
             }, {
               browserName: 'internet explorer',
               platform: 'Windows 7',
@@ -225,9 +223,9 @@ module.exports = function (grunt) {
   })
 
   grunt.registerTask('test', [
-    'default',
-    'connect:test',
-    'saucelabs-mocha'
+    'browserify:server',
+    'connect:livereload',
+    'saucelabs-custom'
   ])
 
   grunt.registerTask('default', [
