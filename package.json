@@ -7,8 +7,7 @@
     "clean": "mkdir -p build && rm -rf build/ && mkdir -p build",
     "dev": "npm run clean && grunt server",
     "build": "npm run clean && cp -a static/** build/ && grunt",
-    "deploy": "npm run build && grunt deploy",
-    "test": "grunt test"
+    "deploy": "npm run build && grunt deploy"
   },
   "author": "",
   "license": "AGPL",
