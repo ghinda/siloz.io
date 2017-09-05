@@ -11,7 +11,7 @@ var apiUrl = 'http://localhost:3000'
 var shortUrl = apiUrl
 
 if (env !== 'local') {
-  apiUrl = 'https://prajina-ghinda.rhcloud.com'
+  apiUrl = 'http://s.siloz.io'
   shortUrl = 'http://s.siloz.io'
 }
 
