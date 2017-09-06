@@ -11,8 +11,8 @@ var apiUrl = 'http://localhost:3000'
 var shortUrl = apiUrl
 
 if (env !== 'local') {
-  apiUrl = 'http://s.siloz.io'
-  shortUrl = 'http://s.siloz.io'
+  apiUrl = 'https://s.siloz.io'
+  shortUrl = apiUrl
 }
 
 var util = require('../util')
