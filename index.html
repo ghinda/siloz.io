@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>
+      siloz.io - private code playground in the browser
+    </title>
+    <meta name="description" content="Web code environment with support for HTML, CSS and JavaScript, along with processors like CoffeeScript, Babel/ES2015, Less, Stylus or Markdown.">
+    <meta name="keywords" content="online code editor, web development demo, online demo, html, css, javascript, markdown, es2015, babel, coffeescript, less, stylus, fiddle">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="stylesheet" type="text/css" href="siloz.min.css">
+  </head>
+  <body>
+
+    <!--[if lte IE 9]>
+        <p class="browserupgrade">
+          You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+        </p>
+    <![endif]-->
+
+    <div class="app">
+      
+      <div class="main siloz-theme-solarized-light" data-durruti-id="0">
+        
+      <header class="header" data-durruti-id="1">
+        <a href="/" class="header-logo">
+          <img src="/images/logo.png" height="16" alt="siloz.io">
+        </a>
+
+        
+    <div class="popup-container about " data-durruti-id="2">
+      <button type="button" class="about-button popup-button btn">
+        About
+      </button>
+
+      <form class="about-popup popup">
+        
+      <p>
+        <a href="/">siloz.io</a> is a private code playground in the browser.
+      </p>
+
+      <p>
+        Your source code is saved in the URL and never reaches our servers.
+      </p>
+
+      <p>
+        Use HTML, CSS and JavaScript, along with processors like CoffeeScript, Babel/ES2015, Less, Stylus or Markdown.
+      </p>
+
+      <h2>
+        Short URLs
+      </h2>
+
+      <p>
+        siloz.io can generate shorter urls, at a privacy cost.
+      </p>
+
+      <p>
+        When a short url is generated, the url  - that includes the source code - is saved on the server, along with a unique token.
+      </p>
+
+      <p>
+        <a href="https://github.com/ghinda/siloz.io" target="_blank">
+          Source code available on GitHub.
+        </a>
+      </p>
+    
+      </form>
+    </div>
+  
+        
+    <div class="popup-container settings " data-durruti-id="3">
+      <button type="button" class="settings-button popup-button btn">
+        Settings
+      </button>
+
+      <form class="settings-popup popup">
+        
+      <fieldset>
+        <legend>
+          Tabs
+        </legend>
+
+        <label>
+          <input type="checkbox" class="settings-show-html" checked>
+          HTML
+        </label>
+
+        <label>
+          <input type="checkbox" class="settings-show-css" checked>
+          CSS
+        </label>
+
+        <label>
+          <input type="checkbox" class="settings-show-js" checked>
+          JavaScript
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          Theme
+        </legend>
+
+        <select class="settings-theme select">
+          <option value="solarized light" selected>
+            Solarized Light
+          </option>
+          <option value="solarized dark" >
+            Solarized Dark
+          </option>
+        </select>
+      </fieldset>
+    
+      </form>
+    </div>
+  
+
+        
+    <div class="popup-container share " data-durruti-id="4">
+      <button type="button" class="share-button popup-button btn">
+        Share
+      </button>
+
+      <form class="share-popup popup">
+        
+      <fieldset class="">
+        <legend>
+          Short URL
+        </legend>
+
+        <button type="button" class="btn btn-primary share-generate ">
+          Generate Short URL
+        </button>
+
+        <div class="share-url share-url-short">
+          <input type="text" class="share-url-input share-url-input-short" value="" readonly>
+          <button type="button" class="btn share-url-copy share-url-copy-short">
+            Copy
+          </button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          Persistent URL
+        </legend>
+
+        <div class="share-url">
+          <input type="text" class="share-url-input share-url-input-long" value="" readonly>
+          <button type="button" class="btn share-url-copy share-url-copy-long">
+            Copy
+          </button>
+        </div>
+      </fieldset>
+    
+      </form>
+    </div>
+  
+
+        <button type="button" class="btn collaborate ">
+          Collaborate
+        </button>
+      </header>
+    
+        
+      <div class="editor
+        
+        
+        
+      " data-durruti-id="5">
+        
+      <div class="editor-bar" data-durruti-id="6">
+        <div class="editor-bar-pane editor-bar-pane-html">
+          
+      <select class="select editor-bar-select-html">
+        
+            <option value="" >
+              HTML
+            </option>
+          
+            <option value="markdown" >
+              Markdown
+            </option>
+          
+      </select>
+    
+
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-html btn" title="Hide HTML">
+            <i class="icon icon-close"></i>
+          </button>
+        </div>
+        <div class="editor-bar-pane editor-bar-pane-css">
+          
+      <select class="select editor-bar-select-css">
+        
+            <option value="" >
+              CSS
+            </option>
+          
+            <option value="less" >
+              Less
+            </option>
+          
+            <option value="stylus" >
+              Stylus
+            </option>
+          
+      </select>
+    
+
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-css btn" title="Hide CSS">
+            <i class="icon icon-close"></i>
+          </button>
+        </div>
+        <div class="editor-bar-pane editor-bar-pane-js">
+          
+      <select class="select editor-bar-select-js">
+        
+            <option value="" >
+              JavaScript
+            </option>
+          
+            <option value="babel" >
+              ES2015/Babel
+            </option>
+          
+            <option value="coffeescript" >
+              CoffeeScript
+            </option>
+          
+      </select>
+    
+
+          <button type="button" class="editor-bar-pane-close editor-bar-pane-close-js btn" title="Hide JavaScript">
+            <i class="icon icon-close"></i>
+          </button>
+        </div>
+        <div class="editor-bar-pane"></div>
+      </div>
+    
+        <div class="editor-widget jotted-theme-siloz" data-durruti-id="7"></div>
+      </div>
+    
+      </div>
+    
+    </div>
+
+      <script src="vendor.min.js"></script>
+      <script src="siloz.min.js"></script>
+
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
+  </body>
+</html>
