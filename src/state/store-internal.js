@@ -7,7 +7,11 @@ var actions = require('./actions-internal')
 
 var defaults = {
   popup: {},
-  loading: {}
+  loading: {},
+  qr: {
+    url: '',
+    error: ''
+  }
 }
 
 var InternalStore = function () {

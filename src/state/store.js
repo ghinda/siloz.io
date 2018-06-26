@@ -26,9 +26,7 @@ var defaults = {
     html: {},
     css: {},
     js: {}
-  },
-
-  short_url: ''
+  }
 }
 
 function replaceLocationHash () {

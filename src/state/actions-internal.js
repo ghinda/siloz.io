@@ -24,12 +24,26 @@ function actions (store) {
     store.set(data)
   }
 
+  function getQr () {
+    return store.get().qr
+  }
+
+  function updateQr (url) {
+    var data = store.get()
+    data.qr = url
+
+    store.set(data)
+  }
+
   return {
     getPopup: getPopup,
     updatePopup: updatePopup,
 
     getLoading: getLoading,
-    updateLoading: updateLoading
+    updateLoading: updateLoading,
+
+    getQr: getQr,
+    updateQr: updateQr
   }
 }
 
