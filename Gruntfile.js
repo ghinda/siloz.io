@@ -193,7 +193,8 @@ module.exports = function (grunt) {
       options: {
         dir: 'build',
         commit: true,
-        push: true
+        push: true,
+        connectCommits: false
       },
       site: {
         options: {
