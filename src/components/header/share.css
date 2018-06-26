@@ -2,7 +2,8 @@
  */
 
 .popup.share-popup {
-  width: 24em;
+  width: auto;
+  min-width: 28em;
 }
 
 .share .share-url {
@@ -19,11 +20,16 @@
   width: 18%;
 }
 
-.share-is-generated .share-generate,
-.share-url-short {
+.share-is-generated .share-qr-error,
+.qr-preview {
   display: none;
 }
 
-.share-is-generated .share-url {
+.share-is-generated .qr-preview {
   display: block;
+}
+
+.share-qr-error {
+  color: #dc322f;
+  font-family: monospace;
 }

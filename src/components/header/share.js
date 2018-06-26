@@ -1,6 +1,8 @@
 /* share
  */
 
+var qrcode = require('qrcode')
+
 var util = require('../../util')
 var Popup = require('../popup')
 
@@ -8,11 +10,8 @@ function Share (actions, actionsInternal) {
   var self = util.inherits(this, Popup)
   Popup.call(self, 'share', actionsInternal)
 
-  var shortUrl = actions.getShortUrl()
   var longUrl = ''
-  var watcher
-
-  var generating = actionsInternal.getLoading('generate-url')
+  var qr = actionsInternal.getQr()
 
   if (typeof window !== 'undefined') {
     longUrl = window.location.href
@@ -36,68 +35,61 @@ function Share (actions, actionsInternal) {
   }
 
   function generate () {
-    // loading
-    actionsInternal.updateLoading('generate-url', true)
+    qrcode.toDataURL(longUrl, {
+      margin: 2,
+      color: {
+        // transparent background
+        light: '#0000'
+      }
+    }, (err, url) => {
+      if (err) {
+        return actionsInternal.updateQr({
+          url: '',
+          error: err.toString()
+        })
+      }
 
-    actions.updateShortUrl(() => {
-      actionsInternal.updateLoading('generate-url', false)
+      actionsInternal.updateQr({
+        url: url,
+        error: ''
+      })
     })
   }
 
   self.mount = function ($container) {
     self.super.mount.call(self, $container)
 
-    var $shortUrl = $container.querySelector('.share-url-input-short')
-    var $shortUrlCopy = $container.querySelector('.share-url-copy-short')
     var $longUrl = $container.querySelector('.share-url-input-long')
     var $longUrlCopy = $container.querySelector('.share-url-copy-long')
 
-    $shortUrlCopy.addEventListener('click', copy($shortUrl))
     $longUrlCopy.addEventListener('click', copy($longUrl))
-
-    var $generateShort = $container.querySelector('.share-generate')
-    $generateShort.addEventListener('click', generate)
-
-    if (shortUrl) {
-      // give it a sec,
-      // to not trigger url update on load,
-      // and force url generation even if nothing was changed,
-      // on foreign clients.
-      watcher = setTimeout(function () {
-        actions.startShortUrlUpdater()
-      }, 1000)
-    }
   }
 
   self.unmount = function () {
     self.super.unmount.call(self)
+  }
 
-    if (watcher) {
-      clearTimeout(watcher)
-    }
+  var oldTogglePopup = self.togglePopup
+  self.togglePopup = () => {
+    oldTogglePopup()
 
-    if (shortUrl) {
-      actions.stopShortUrlUpdater()
+    if (this.state === true) {
+      generate()
     }
   }
 
   self.render = () => {
     return self.super.render.call(self, 'Share', `
-      <fieldset class="${shortUrl ? 'share-is-generated' : ''}">
+      <fieldset class="${qr.url ? 'share-is-generated' : ''}">
         <legend>
-          Short URL
+          QR code
         </legend>
 
-        <button type="button" class="btn btn-primary share-generate ${generating ? 'is-loading' : ''}">
-          Generate Short URL
-        </button>
+        <img src="${qr.url}" class="qr-preview">
 
-        <div class="share-url share-url-short">
-          <input type="text" class="share-url-input share-url-input-short" value="${shortUrl}" readonly>
-          <button type="button" class="btn share-url-copy share-url-copy-short">
-            Copy
-          </button>
-        </div>
+        <p class="share-qr-error">
+          ${qr.error}
+        </p>
       </fieldset>
       <fieldset>
         <legend>
