@@ -38,8 +38,7 @@ function Share (actions, actionsInternal) {
     qrcode.toDataURL(longUrl, {
       margin: 2,
       color: {
-        // transparent background
-        light: '#0000'
+        light: '#fdfbf4'
       }
     }, (err, url) => {
       if (err) {
